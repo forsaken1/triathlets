@@ -2,7 +2,7 @@
  * Globals
  */
 body {
-  font-family: Georgia, "Times New Roman", Times, serif;
+  font-family: Helvetica, Georgia, "Times New Roman", Times, serif;
   color: #555;
 }
 
@@ -70,4 +70,24 @@ h6, .h6 {
 
 .main {
   padding-top: 20px;
+}
+
+table td, table th {
+  text-align: center;
+}
+
+.discipline-swim {
+  background-color: #d9edf7;
+}
+
+.discipline-transit {
+  background-color: #fcf8e3;
+}
+
+.discipline-bicycle {
+  background-color: #f2dede;
+}
+
+.discipline-run {
+  background-color: #dff0d8;
 }
