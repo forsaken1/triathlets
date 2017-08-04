@@ -1,6 +1,6 @@
-# triathlets
+# Triathlets
 
-Your description here
+Project for triathlets
 
 ## Installation
 
@@ -46,4 +46,4 @@ Note: The Docker images are compatible with Heroku.
 
 ## Contributors
 
-- [your_github_name](https://github.com/your_github_name) your_name - creator, maintainer
+- [forsaken1](https://github.com/forsaken1) Krylov Alexey - creator, maintainer

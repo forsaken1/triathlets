@@ -1,8 +1,12 @@
 version: 1.0
 shards:
+  accord:
+    github: neovintage/accord
+    version: 1.1.0
+
   amber:
     github: amber-crystal/amber
-    version: 0.1.5
+    version: 0.1.6
 
   amber_spec:
     github: amber-crystal/amber-spec
@@ -12,13 +16,13 @@ shards:
     github: crystal-lang/crystal-db
     version: 0.4.2
 
-  granite_orm:
-    github: amber-crystal/granite-orm
-    version: 0.6.4
+  inflector:
+    github: phoffer/inflector.cr
+    version: 0.1.8
 
-  kemalyst-validators:
-    github: kemalyst/kemalyst-validators
-    version: 0.2.0
+  jennifer:
+    github: imdrasil/jennifer.cr
+    version: 0.3.2
 
   kilt:
     github: jeromegn/kilt
@@ -39,6 +43,10 @@ shards:
   redis:
     github: stefanwille/crystal-redis
     version: 1.8.0
+
+  sam:
+    github: imdrasil/sam.cr
+    version: 0.2.1
 
   slang:
     github: jeromegn/slang

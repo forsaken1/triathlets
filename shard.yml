@@ -15,18 +15,14 @@ dependencies:
   quartz-mailer:
     github: amber-crystal/quartz-mailer
 
-  granite_orm:
-    github: amber-crystal/granite-orm
+  jennifer:
+    github: imdrasil/jennifer.cr
+
+  sam:
+    github: imdrasil/sam.cr
 
   pg:
     github: will/crystal-pg
-
-#  mysql:
-#    github: crystal-lang/crystal-mysql
-#  pg:
-#    github: will/crystal-pg
-#  sqlite3:
-#    github: crystal-lang/crystal-sqlite3
 
 development_dependencies:
   amber_spec:

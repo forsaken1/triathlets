@@ -1,2 +1,14 @@
-pg:
-  database: postgres://postgres:@pg:5432/triathlets_development
+defaults : &defaults
+  host: localhost
+  adapter: postgres
+  user: postgres
+  password: postgres
+  migration_files_path: db/migrations
+
+development:
+  db: triathlets_development
+  <<: *defaults
+
+test:
+  db: triathlets_test
+  <<: *defaults

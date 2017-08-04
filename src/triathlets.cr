@@ -1,3 +1,6 @@
+require "jennifer/adapter/postgres"
+require "jennifer"
+
 require "amber"
 require "../config/*"
 require "./models/**"
