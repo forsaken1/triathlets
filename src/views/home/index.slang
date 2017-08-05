@@ -17,10 +17,10 @@ div
 
       - race.results.each_with_index do |result, i|
         tr
-          td = i
-          td = result.user.name
-          td = result.user.team
-          td = result.user.year
+          td = i + 1
+          td = result.user.not_nil!.name
+          td = result.user.not_nil!.team.not_nil!.name
+          td = result.user.not_nil!.year
           td class="discipline-swim" 21:23
           td class="discipline-transit" 01:54
           td class="discipline-bicycle" 39:09
