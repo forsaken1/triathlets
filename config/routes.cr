@@ -22,5 +22,6 @@ Amber::Server.instance.config do |app|
 
   routes :web do
     get "/", HomeController, :index
+    get "/races/:id", RacesController, :show
   end
 end

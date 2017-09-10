@@ -6,15 +6,31 @@ shards:
 
   amber:
     github: amber-crystal/amber
-    version: 0.1.6
+    version: 0.2.5
 
   amber_spec:
     github: amber-crystal/amber-spec
-    version: 0.1.0
+    version: 0.1.1
+
+  callback:
+    github: mosop/callback
+    version: 0.5.1
+
+  cli:
+    github: mosop/cli
+    version: 0.5.2
 
   db:
     github: crystal-lang/crystal-db
     version: 0.4.2
+
+  icr:
+    github: TechMagister/crystal-icr
+    commit: b28bb938cc9e9e439424217c074a9168d253ba4b
+
+  ifrit:
+    github: imdrasil/ifrit
+    version: 0.1.1
 
   inflector:
     github: phoffer/inflector.cr
@@ -27,6 +43,18 @@ shards:
   kilt:
     github: jeromegn/kilt
     version: 0.3.3
+
+  micrate:
+    github: juanedi/micrate
+    version: 0.3.0
+
+  mysql:
+    github: crystal-lang/crystal-mysql
+    version: 0.3.2
+
+  optarg:
+    github: mosop/optarg
+    version: 0.4.4
 
   pg:
     github: will/crystal-pg
@@ -48,6 +76,14 @@ shards:
     github: imdrasil/sam.cr
     version: 0.2.1
 
+  sentry:
+    github: TechMagister/sentry
+    commit: a78129ec1e66aa24c91b93199ea187e4793c8d58
+
+  shell-table:
+    github: jwaldrip/shell-table.cr
+    version: 0.9.1
+
   slang:
     github: jeromegn/slang
     commit: b817c89c7e5ae39562710c0d6c7f42cee685e14f
@@ -55,4 +91,20 @@ shards:
   smtp:
     github: raydf/smtp.cr
     commit: 36854c38435ce104914cb6f44e08c23d8defd143
+
+  spinner:
+    github: elorest/spinner
+    version: 0.1.1
+
+  sqlite3:
+    github: crystal-lang/crystal-sqlite3
+    version: 0.8.2
+
+  string_inflection:
+    github: mosop/string_inflection
+    version: 0.2.1
+
+  teeplate:
+    github: mosop/teeplate
+    version: 0.4.5
 

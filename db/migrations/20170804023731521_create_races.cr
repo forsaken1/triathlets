@@ -3,8 +3,6 @@ class CreateRaces20170804023731521 < Jennifer::Migration::Base
     create_table(:races) do |t|
       t.string :title
       t.text :description
-      t.bool :transits, {:default => false}
-      t.json :disciplines
       t.timestamps
     end
   end
