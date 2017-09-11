@@ -2,6 +2,7 @@ class CreateDisciplines20170903035431202 < Jennifer::Migration::Base
   def up
     create_table(:disciplines) do |t|
       t.string :name
+      t.string :title
       t.timestamps
     end
   end

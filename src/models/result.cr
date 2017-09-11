@@ -2,9 +2,9 @@ class Result < Jennifer::Model::Base
   with_timestamps
   mapping(
     id: {type: Int32, primary: true},
-    user_id: {type: Int32, null: true},
+    user_id: Int32,
+    race_id: Int32,
     group_id: {type: Int32, null: true},
-    race_id: {type: Int32, null: true},
     position: {type: Int32, null: true},
     created_at: {type: Time, null: true},
     updated_at: {type: Time, null: true}
@@ -13,5 +13,5 @@ class Result < Jennifer::Model::Base
   belongs_to :user, User
   belongs_to :race, Race
 
-  has_many :result_disciplines, ResultDiscipline
+  has_many :result_race_disciplines, ResultRaceDiscipline
 end
