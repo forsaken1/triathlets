@@ -9,5 +9,5 @@ class Race < Jennifer::Model::Base
   )
 
   has_many :results, Result
-  has_many :race_disciplines, RaceDiscipline
+  has_many :race_disciplines, RaceDiscipline, { order(position: :asc) }
 end

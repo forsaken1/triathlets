@@ -6,11 +6,11 @@ table class="table table-striped"
     th = "Имя"
     th = "Команда"
     th = "Год"
-    - race.race_disciplines.each do |race_discipline|
+    - race_disciplines.each do |race_discipline|
       th class="discipline-#{race_discipline.discipline!.name}" = race_discipline.discipline!.title
     th = "Итог"
 
-  - race.results.each_with_index do |result, i|
+  - results.to_a.each_with_index do |result, i|
     tr
       td rowspan="3" = i + 1
       td rowspan="3" = result.user!.name

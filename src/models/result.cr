@@ -13,5 +13,5 @@ class Result < Jennifer::Model::Base
   belongs_to :user, User
   belongs_to :race, Race
 
-  has_many :result_race_disciplines, ResultRaceDiscipline
+  has_many :result_race_disciplines, ResultRaceDiscipline, { order(position: :asc) }
 end
