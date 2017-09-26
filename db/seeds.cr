@@ -24,12 +24,6 @@ RaceDiscipline.create race_id: race1.id, discipline_id: discipline2.id, position
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline4.id, position: 4, distance: 0.0.to_f32
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline3.id, position: 5, distance: 5.0.to_f32
 
-# ResultRaceDiscipline.create(result_id: result1.id, race_discipline_id: race_discipline1.id, position: 1, time: "00:19:36")
-# ResultRaceDiscipline.create(result_id: result1.id, race_discipline_id: race_discipline2.id, position: 2, time: "00:02:07")
-# ResultRaceDiscipline.create(result_id: result1.id, race_discipline_id: race_discipline3.id, position: 3, time: "00:35:41")
-# ResultRaceDiscipline.create(result_id: result1.id, race_discipline_id: race_discipline4.id, position: 4, time: "00:01:58")
-# ResultRaceDiscipline.create(result_id: result1.id, race_discipline_id: race_discipline5.id, position: 5, time: "00:19:12")
-
 def add_result(race, name, year, team_name, *results)
   team = Team.where { _name == team_name }.first
   team = if team.nil?

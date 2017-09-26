@@ -18,14 +18,14 @@ class ResultRaceDiscipline < Jennifer::Model::Base
     case race_discipline!.discipline!.name
     when "swim"
       seconds_at_100m = seconds / race_discipline!.distance / 10
-      "#{seconds_at_100m.to_i / 60}:#{seconds_at_100m.to_i % 60} мин/100 м"
+      "#{seconds_at_100m.to_i / 60}:#{Calculate.two_digits seconds_at_100m.to_i % 60} мин/100 м"
     when "bicycle"
       hour_f = seconds / 3600.0
       speed = race_discipline!.distance / hour_f
       "#{speed.round 2} км/ч"
     when "run"
       seconds_at_km = seconds / race_discipline!.distance
-      "#{seconds_at_km.to_i / 60}:#{seconds_at_km.to_i % 60} мин/км"
+      "#{seconds_at_km.to_i / 60}:#{Calculate.two_digits seconds_at_km.to_i % 60} мин/км"
     else
       "-"
     end
