@@ -73,8 +73,21 @@ USERS = {
   "Ващенко Игорь" => User.create(name: "Ващенко Игорь", year: 1969).id,
   "Жарский Андрей" => User.create(name: "Жарский Андрей", year: 1982).id,
   "Терсков Сергей" => User.create(name: "Терсков Сергей", year: 1983).id,
+  "Коноплин Александр" => User.create(name: "Коноплин Александр", year: 1988).id,
+  "Фролов Денис" => User.create(name: "Фролов Денис", year: 1978).id,
+  "Дубовский Игорь" => User.create(name: "Дубовский Игорь", year: 1970).id,
+  "Галаган Александр" => User.create(name: "Галаган Александр", year: 1979).id,
+  "Помазенков Дмитрий" => User.create(name: "Помазенков Дмитрий", year: 1983).id,
+  "Сакнаев Евгений" => User.create(name: "Сакнаев Евгений", year: 1984).id,
+  "Послушаев Александр" => User.create(name: "Послушаев Александр", year: 1984).id,
+  "Галендухин Сергей" => User.create(name: "Галендухин Сергей", year: 1972).id,
   # "" => User.create(name: "", year: 19).id,
 }
+
+discipline1 = Discipline.create name: "swim", title: "Плавание"
+discipline2 = Discipline.create name: "bicycle", title: "Велосипед"
+discipline3 = Discipline.create name: "run", title: "Бег"
+discipline4 = Discipline.create name: "transit", title: "Транзитка"
 
 def add_result(race, user_name, city_name, team_name, *results)
   result = Result.create user_id: USERS[user_name], race_id: race.id, city_id: CITIES[city_name], team_id: TEAMS[team_name]
@@ -87,11 +100,6 @@ end
 # Спринт-триатлон 29.07.2017
 
 race1 = Race.create title: "Спринт-триатлон"
-
-discipline1 = Discipline.create name: "swim", title: "Плавание"
-discipline2 = Discipline.create name: "bicycle", title: "Велосипед"
-discipline3 = Discipline.create name: "run", title: "Бег"
-discipline4 = Discipline.create name: "transit", title: "Транзитка"
 
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline1.id, position: 1, distance: 0.75.to_f32
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline4.id, position: 2, distance: 0.0.to_f32
@@ -126,5 +134,25 @@ add_result(race1, "Чернышев Евгений",     "Находка",      
 add_result(race1, "Ващенко Игорь",        "Биробиджан",   "Йожики", "0:19:30", "0:02:08", "1:01:04", "0:00:39", "0:26:54")
 add_result(race1, "Жарский Андрей",       "Владивосток",  "Лично",  "0:29:04", "0:00:00", "1:08:11", "0:00:00", "0:00:00")
 add_result(race1, "Терсков Сергей",       "Хабаровск",    "Лично",  "0:00:00", "0:00:00", "0:00:00", "0:00:00", "0:00:00")
+
+# Спринт-триатлон 17.09.2016
+
+race2 = Race.create title: "Спринт-триатлон в Уссурийске на базе Южная"
+
+RaceDiscipline.create race_id: race2.id, discipline_id: discipline1.id, position: 1, distance: 0.5.to_f32
+RaceDiscipline.create race_id: race2.id, discipline_id: discipline4.id, position: 2, distance: 0.0.to_f32
+RaceDiscipline.create race_id: race2.id, discipline_id: discipline2.id, position: 3, distance: 20.0.to_f32
+RaceDiscipline.create race_id: race2.id, discipline_id: discipline4.id, position: 4, distance: 0.0.to_f32
+RaceDiscipline.create race_id: race2.id, discipline_id: discipline3.id, position: 5, distance: 5.0.to_f32
+
+add_result(race2, "Коноплин Александр",   "Артем",       "Лично", "0:12:50", "0:02:10", "0:42:23", "0:02:17", "0:21:30")
+add_result(race2, "Фролов Денис",         "Уссурийск",   "Лично", "0:16:30", "0:03:49", "0:43:31", "0:02:36", "0:24:29")
+add_result(race2, "Дубовский Игорь",      "Владивосток", "Лично", "0:12:49", "0:04:22", "0:47:59", "0:03:00", "0:24:59")
+add_result(race2, "Галаган Александр",    "Владивосток", "Лично", "0:13:07", "0:03:31", "0:48:32", "0:02:55", "0:27:54")
+add_result(race2, "Помазенков Дмитрий",   "Владивосток", "Лично", "0:14:10", "0:03:20", "0:52:52", "0:02:17", "0:23:39")
+add_result(race2, "Сакнаев Евгений",      "Владивосток", "Лично", "0:14:35", "0:02:47", "0:52:47", "0:02:36", "0:27:54")
+add_result(race2, "Послушаев Александр",  "Владивосток", "Лично", "0:11:50", "0:04:12", "1:02:28", "0:02:16", "0:24:55")
+add_result(race2, "Крылов Алексей",       "Владивосток", "XC TRAINING", "0:21:10", "0:04:51", "0:50:49", "0:02:40", "0:28:27")
+add_result(race2, "Галендухин Сергей",    "Владивосток", "Лично", "0:18:40", "0:04:02", "0:57:38", "0:03:51", "0:31:01")
 
 # add_result(race1, "", "", "", "0:", "0:", "0:", "0:", "0:")
