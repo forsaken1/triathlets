@@ -12,6 +12,8 @@ class RaceDiscipline < Jennifer::Model::Base
 
   belongs_to :discipline, Discipline
 
+  scope :ordered { order(position: :asc) }
+
   def distance_format
     case discipline!.name
     when "swim"
