@@ -112,7 +112,7 @@ end
 
 # Спринт-триатлон 29.07.2017
 
-race1 = Race.create title: "Спринт-триатлон"
+race1 = Race.create title: "Спринт-триатлон", date: "29.07.2017"
 
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline1.id, position: 1, distance: 0.75.to_f32
 RaceDiscipline.create race_id: race1.id, discipline_id: discipline4.id, position: 2, distance: 0.0.to_f32
@@ -150,7 +150,7 @@ add_result(race1, "Мужчины Шоссе", "Терсков Сергей",   
 
 # Спринт-триатлон 17.09.2016
 
-race2 = Race.create title: "Спринт-триатлон в Уссурийске на базе Южная"
+race2 = Race.create title: "Спринт-триатлон в Уссурийске на базе Южная", date: "17.09.2016"
 
 RaceDiscipline.create race_id: race2.id, discipline_id: discipline1.id, position: 1, distance: 0.5.to_f32
 RaceDiscipline.create race_id: race2.id, discipline_id: discipline4.id, position: 2, distance: 0.0.to_f32

@@ -2,6 +2,7 @@ class CreateRaces20170804023731521 < Jennifer::Migration::Base
   def up
     create_table(:races) do |t|
       t.string :title
+      t.string :date
       t.text :description
       t.timestamps
     end

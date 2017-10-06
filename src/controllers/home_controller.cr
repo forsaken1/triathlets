@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    races = Race.all
+    races = Race.ordered
     render("index.slang")
   end
 end

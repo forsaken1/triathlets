@@ -213,6 +213,7 @@ ALTER SEQUENCE race_disciplines_id_seq OWNED BY race_disciplines.id;
 CREATE TABLE races (
     id integer NOT NULL,
     title character varying(254),
+    date character varying(254),
     description text,
     created_at timestamp without time zone,
     updated_at timestamp without time zone

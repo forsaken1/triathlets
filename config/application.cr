@@ -1,6 +1,6 @@
 AMBER_ENV = ARGV[0]? || ENV["AMBER_ENV"]? || "development"
 
-Amber::Server.instance.config do |app|
+Amber::Server.configure do |app|
   # Server options
   app_path = __FILE__ # Do not change unless you understand what you are doing.
   app.name = "Triathlets web application."

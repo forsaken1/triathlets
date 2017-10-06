@@ -17,6 +17,7 @@ dependencies:
 
   jennifer:
     github: imdrasil/jennifer.cr
+    version: 0.3.2
 
   sam:
     github: imdrasil/sam.cr
