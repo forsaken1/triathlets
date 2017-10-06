@@ -99,7 +99,11 @@ discipline3 = Discipline.create name: "run", title: "Бег"
 discipline4 = Discipline.create name: "transit", title: "Транзитка"
 
 def add_result(race, group_name, user_name, city_name, team_name, *results)
-  result = Result.create user_id: USERS[user_name], race_id: race.id, city_id: CITIES[city_name], team_id: TEAMS[team_name], group_id: GROUPS[group_name]
+  result = if group_name
+             Result.create user_id: USERS[user_name], race_id: race.id, city_id: CITIES[city_name], team_id: TEAMS[team_name], group_id: GROUPS[group_name]
+           else
+             Result.create user_id: USERS[user_name], race_id: race.id, city_id: CITIES[city_name], team_id: TEAMS[team_name]
+           end
 
   results.each_with_index do |res, i|
     ResultRaceDiscipline.create(result_id: result.id, race_discipline_id: race.race_disciplines[i].id, position: i, time: res)
@@ -154,14 +158,14 @@ RaceDiscipline.create race_id: race2.id, discipline_id: discipline2.id, position
 RaceDiscipline.create race_id: race2.id, discipline_id: discipline4.id, position: 4, distance: 0.0.to_f32
 RaceDiscipline.create race_id: race2.id, discipline_id: discipline3.id, position: 5, distance: 5.0.to_f32
 
-add_result(race2, "Коноплин Александр",   nil, "Артем",       "Лично", "0:12:50", "0:02:10", "0:42:23", "0:02:17", "0:21:30")
-add_result(race2, "Фролов Денис",         nil, "Уссурийск",   "Лично", "0:16:30", "0:03:49", "0:43:31", "0:02:36", "0:24:29")
-add_result(race2, "Дубовский Игорь",      nil, "Владивосток", "Лично", "0:12:49", "0:04:22", "0:47:59", "0:03:00", "0:24:59")
-add_result(race2, "Галаган Александр",    nil, "Владивосток", "Лично", "0:13:07", "0:03:31", "0:48:32", "0:02:55", "0:27:54")
-add_result(race2, "Помазенков Дмитрий",   nil, "Владивосток", "Лично", "0:14:10", "0:03:20", "0:52:52", "0:02:17", "0:23:39")
-add_result(race2, "Сакнаев Евгений",      nil, "Владивосток", "Лично", "0:14:35", "0:02:47", "0:52:47", "0:02:36", "0:27:54")
-add_result(race2, "Послушаев Александр",  nil, "Владивосток", "Лично", "0:11:50", "0:04:12", "1:02:28", "0:02:16", "0:24:55")
-add_result(race2, "Крылов Алексей",       nil, "Владивосток", "XC TRAINING", "0:21:10", "0:04:51", "0:50:49", "0:02:40", "0:28:27")
-add_result(race2, "Галендухин Сергей",    nil, "Владивосток", "Лично", "0:18:40", "0:04:02", "0:57:38", "0:03:51", "0:31:01")
+add_result(race2, nil, "Коноплин Александр",   "Артем",       "Лично", "0:12:50", "0:02:10", "0:42:23", "0:02:17", "0:21:30")
+add_result(race2, nil, "Фролов Денис",         "Уссурийск",   "Лично", "0:16:30", "0:03:49", "0:43:31", "0:02:36", "0:24:29")
+add_result(race2, nil, "Дубовский Игорь",      "Владивосток", "Лично", "0:12:49", "0:04:22", "0:47:59", "0:03:00", "0:24:59")
+add_result(race2, nil, "Галаган Александр",    "Владивосток", "Лично", "0:13:07", "0:03:31", "0:48:32", "0:02:55", "0:27:54")
+add_result(race2, nil, "Помазенков Дмитрий",   "Владивосток", "Лично", "0:14:10", "0:03:20", "0:52:52", "0:02:17", "0:23:39")
+add_result(race2, nil, "Сакнаев Евгений",      "Владивосток", "Лично", "0:14:35", "0:02:47", "0:52:47", "0:02:36", "0:27:54")
+add_result(race2, nil, "Послушаев Александр",  "Владивосток", "Лично", "0:11:50", "0:04:12", "1:02:28", "0:02:16", "0:24:55")
+add_result(race2, nil, "Крылов Алексей",       "Владивосток", "XC TRAINING", "0:21:10", "0:04:51", "0:50:49", "0:02:40", "0:28:27")
+add_result(race2, nil, "Галендухин Сергей",    "Владивосток", "Лично", "0:18:40", "0:04:02", "0:57:38", "0:03:51", "0:31:01")
 
 # add_result(race1, "", "", "", "0:", "0:", "0:", "0:", "0:")
