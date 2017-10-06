@@ -1,6 +1,11 @@
 h2 = race.title
 
-table class="table table-striped"
+ul.nav.nav-tabs
+  - groups.each do |group|
+    li
+      a href="#" = group[:name]
+
+table.table.table-striped
   tr
     th #
     th = "Имя"

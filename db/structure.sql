@@ -101,6 +101,41 @@ ALTER SEQUENCE disciplines_id_seq OWNED BY disciplines.id;
 
 
 --
+-- Name: groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE groups (
+    id integer NOT NULL,
+    name character varying(254),
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE groups OWNER TO postgres;
+
+--
+-- Name: groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE groups_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE groups_id_seq OWNER TO postgres;
+
+--
+-- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
+
+
+--
 -- Name: migration_versions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -376,6 +411,13 @@ ALTER TABLE ONLY disciplines ALTER COLUMN id SET DEFAULT nextval('disciplines_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
+ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
 ALTER TABLE ONLY migration_versions ALTER COLUMN id SET DEFAULT nextval('migration_versions_id_seq'::regclass);
 
 
@@ -435,6 +477,14 @@ ALTER TABLE ONLY cities
 
 ALTER TABLE ONLY disciplines
     ADD CONSTRAINT disciplines_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY groups
+    ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
 
 
 --
