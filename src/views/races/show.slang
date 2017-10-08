@@ -3,7 +3,7 @@ h2 = race.title
 ul.nav.nav-tabs
   - groups.each do |group|
     li
-      a href="#" = group[:name]
+      a href="/races/#{race.id}?group_id=#{group.id}" = group.name
 
 table.table.table-striped
   tr

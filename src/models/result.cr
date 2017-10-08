@@ -16,6 +16,7 @@ class Result < Jennifer::Model::Base
   belongs_to :race, Race
   belongs_to :city, City
   belongs_to :team, Team
+  belongs_to :group, Group
 
   has_many :result_race_disciplines, ResultRaceDiscipline, { order(position: :asc) }
 end
