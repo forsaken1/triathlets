@@ -27,4 +27,8 @@ class RacesController < ApplicationController
       group.id
     end.as(Array(Group))
   end
+
+  private def active?(group)
+    params["group_id"]? && params["group_id"].to_i == group.id
+  end
 end

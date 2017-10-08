@@ -1,8 +1,10 @@
 h2 = race.title
 
 ul.nav.nav-tabs
+  li class="#{params["group_id"]? ? "" : "active"}"
+    a href="/races/#{race.id}" = "Абсолют"
   - groups.each do |group|
-    li
+    li class="#{active?(group) ? "active" : ""}"
       a href="/races/#{race.id}?group_id=#{group.id}" = group.name
 
 table.table.table-striped
