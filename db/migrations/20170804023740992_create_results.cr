@@ -7,6 +7,7 @@ class CreateResults20170804023740992 < Jennifer::Migration::Base
       t.reference :city
       t.reference :team
       t.integer :position
+      t.string :time
       t.timestamps
     end
   end

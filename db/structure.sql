@@ -293,6 +293,7 @@ CREATE TABLE results (
     city_id integer,
     team_id integer,
     "position" integer,
+    "time" character varying(254),
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );
