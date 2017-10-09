@@ -7,6 +7,7 @@ class Result < Jennifer::Model::Base
     city_id: Int32,
     team_id: Int32,
     group_id: {type: Int32, null: true},
+    time: {type: String, null: true},
     position: {type: Int32, null: true},
     created_at: {type: Time, null: true},
     updated_at: {type: Time, null: true}

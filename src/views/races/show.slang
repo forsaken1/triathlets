@@ -30,7 +30,7 @@ table.table.table-striped
       td rowspan="2" = result.user!.year
       - result.result_race_disciplines.each do |result_race_discipline|
         td class="discipline-#{result_race_discipline.race_discipline!.discipline!.name}" = result_race_discipline.time
-      td rowspan="2" = Calculate.all_time result.result_race_disciplines
+      td rowspan="2" = result.time
 
     tr
       - result.result_race_disciplines.each do |result_race_discipline|

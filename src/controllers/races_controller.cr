@@ -10,10 +10,10 @@ class RacesController < ApplicationController
 
   private def results
     @results ||= if params["group_id"]?
-      Result.where { _race_id == race.id && _group_id == params["group_id"] }
+      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = #{race.id} AND results.group_id = #{params["group_id"]} ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') ASC"
     else
-      Result.where { _race_id == race.id }
-    end.includes(:result_race_disciplines).includes(:user).as(Jennifer::QueryBuilder::ModelQuery(Result))
+      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = #{race.id} ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') ASC"
+    end.as(Array(Result))#.includes(:result_race_disciplines).includes(:user).as(Jennifer::QueryBuilder::ModelQuery(Result))
   end
 
   private def all_results
