@@ -1,6 +1,10 @@
 h2 = "Мультиспорт Приморского края"
 
-div
+.races
   - races.each do |race|
-    h3 = race.title
-    a href="races/#{race.id}" = "Результаты"
+    .race
+      h3 = race.title
+      .date
+        = "Дата: "
+        = race.date
+      a href="races/#{race.id}" = "Результаты"

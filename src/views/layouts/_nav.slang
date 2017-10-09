@@ -1,2 +1,2 @@
 - active = context.request.path == "/" ? "active" : ""
-a class="nav-item #{active}" href="/" = "Мультиспорт"
+a class="nav-item #{active}" href="/" = "Мультиспорт Приморского края"

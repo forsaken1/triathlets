@@ -91,3 +91,11 @@ table td, table th {
 .discipline-run {
   background-color: #dff0d8;
 }
+
+.races {
+  margin-top: 20px;
+}
+
+.race {
+  margin-bottom: 20px;
+}
