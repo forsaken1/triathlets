@@ -16,11 +16,33 @@ class RacesController < ApplicationController
     end
   end
 
-  private def results
-    @results ||= if params["group_id"]?
-      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = $1 AND results.group_id = $2 ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') #{order}", [race.id, params["group_id"]]
+  private def group_id_sql
+    if params["group_id"]?
+      "AND results.group_id = #{params["group_id"].to_i}"
     else
-      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = $1 ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') #{order}", [race.id]
+      ""
+    end
+  end
+
+  private def results
+    @results ||= if params["position"]?
+      Result.search_by_sql(
+        "SELECT results.* FROM results
+        LEFT JOIN result_race_disciplines ON result_race_disciplines.result_id = results.id
+        AND result_race_disciplines.position = #{params["position"].to_i}
+        WHERE results.race_id = $1
+        #{group_id_sql}
+        ORDER BY TO_TIMESTAMP(result_race_disciplines.time, 'HH24.MI.SS') #{order}",
+        [race.id]
+      )
+    else
+      Result.search_by_sql(
+        "SELECT results.* FROM results
+        WHERE results.race_id = $1
+        #{group_id_sql}
+        ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') #{order}",
+        [race.id]
+      )
     end.as(Array(Result))#.includes(:result_race_disciplines).includes(:user).as(Jennifer::QueryBuilder::ModelQuery(Result))
   end
 
