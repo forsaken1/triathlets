@@ -2,10 +2,10 @@ h2 = race.title
 
 ul.nav.nav-tabs
   li class="#{params["group_id"]? ? "" : "active"}"
-    a href="/races/#{race.id}" = "Абсолют"
+    a href=race_path(race) = "Абсолют"
   - groups.each do |group|
     li class="#{active?(group) ? "active" : ""}"
-      a href="/races/#{race.id}?group_id=#{group.id}" = group.name
+      a href="#{race_path(race, group_id: group.id.to_s)}" = group.name
 
 table.table.table-striped
   tr
@@ -19,7 +19,8 @@ table.table.table-striped
         = race_discipline.discipline!.title
         br
         = race_discipline.distance_format
-    th = "Итог"
+    th
+      a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: params["order"]? && params["order"] == "asc" ? "desc" : "asc")}" = "Итог"
 
   - results.to_a.each_with_index do |result, i|
     tr

@@ -8,11 +8,19 @@ class RacesController < ApplicationController
     @race ||= Race.find!(params["id"]).as(Race)
   end
 
+  private def order
+    if params["order"]? && params["order"] == "desc"
+      "desc"
+    else
+      "asc"
+    end
+  end
+
   private def results
     @results ||= if params["group_id"]?
-      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = #{race.id} AND results.group_id = #{params["group_id"]} ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') ASC"
+      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = $1 AND results.group_id = $2 ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') #{order}", [race.id, params["group_id"]]
     else
-      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = #{race.id} ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') ASC"
+      Result.search_by_sql "SELECT * FROM results WHERE results.race_id = $1 ORDER BY TO_TIMESTAMP(results.time, 'HH.MI.SS') #{order}", [race.id]
     end.as(Array(Result))#.includes(:result_race_disciplines).includes(:user).as(Jennifer::QueryBuilder::ModelQuery(Result))
   end
 
@@ -30,5 +38,16 @@ class RacesController < ApplicationController
 
   private def active?(group)
     params["group_id"]? && params["group_id"].to_i == group.id
+  end
+
+  private def race_path(race, **attributes)
+    joined_attrs = unless attributes.empty?
+              "?" + attributes.map do |key, value|
+                      "#{key}=#{value}" unless value.nil? || value.blank?
+                    end.compact.join("&")
+            else
+              ""
+            end
+    "/races/#{race.id}#{joined_attrs}"
   end
 end
