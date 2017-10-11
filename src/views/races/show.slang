@@ -14,13 +14,13 @@ table.table.table-striped
     th = "Команда"
     th = "Город"
     th = "Год"
-    - race_disciplines.each do |race_discipline|
+    - race_disciplines.to_a.each_with_index do |race_discipline, i|
       th class="discipline-#{race_discipline.discipline!.name}"
-        = race_discipline.discipline!.title
+        a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: order == "asc" && params["position"]? ? "desc" : "asc", position: i.to_s)}" = race_discipline.discipline!.title
         br
         = race_discipline.distance_format
     th
-      a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: params["order"]? && params["order"] == "asc" ? "desc" : "asc")}" = "Итог"
+      a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: order == "asc" && !params["position"]? ? "desc" : "asc")}" = "Итог"
 
   - results.to_a.each_with_index do |result, i|
     tr
