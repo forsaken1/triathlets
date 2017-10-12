@@ -37,13 +37,17 @@ class RacesController < ApplicationController
     @all_results ||= Result.where { _race_id == race.id }.as(Jennifer::QueryBuilder::ModelQuery(Result))
   end
 
+  private def group_ids
+    all_results.to_a.map do |result|
+      result.group_id
+    end.compact.uniq do |group_id|
+      group_id
+    end
+  end
+
   # Groups list from all results for race
   private def groups
-    @groups ||= all_results.to_a.map do |result|
-      result.group
-    end.compact.uniq do |group|
-      group.id
-    end.as(Array(Group))
+    @groups ||= Group.search_by_sql("SELECT * FROM groups WHERE id IN (#{group_ids.join(",")})").as(Array(Group))
   end
 
   # For tabs
