@@ -9,33 +9,6 @@ class RacesController < ApplicationController
     @race ||= Race.find!(params["id"]).as(Race)
   end
 
-  # Sort icon html helper
-  private def sort_icon(position)
-    if (position.nil? && !params["position"]?) || (params["position"]? && position == params["position"].to_i)
-      "<i class=\"fa fa-sort-#{order}\"></i>"
-    else
-      "<i class=\"fa fa-sort\"></i>"
-    end
-  end
-
-  # Safe current order
-  private def order
-    if params["order"]? && params["order"] == "desc"
-      "desc"
-    else
-      "asc"
-    end
-  end
-
-  # Safe SQL for sorting by groups
-  private def group_id_sql
-    if params["group_id"]?
-      "AND results.group_id = #{params["group_id"].to_i}"
-    else
-      ""
-    end
-  end
-
   # Filter results for current race
   private def results
     @results ||= if params["position"]?
@@ -88,5 +61,32 @@ class RacesController < ApplicationController
               ""
             end
     "/races/#{race.id}#{joined_attrs}"
+  end
+
+  # Safe current order
+  private def order
+    if params["order"]? && params["order"] == "desc"
+      "desc"
+    else
+      "asc"
+    end
+  end
+
+  # Safe SQL for sorting by groups
+  private def group_id_sql
+    if params["group_id"]?
+      "AND results.group_id = #{params["group_id"].to_i}"
+    else
+      ""
+    end
+  end
+
+  # Sort icon html helper
+  private def sort_icon(position)
+    if (position.nil? && !params["position"]?) || (params["position"]? && position == params["position"].to_i)
+      "<i class=\"fa fa-sort-#{order}\"></i>"
+    else
+      "<i class=\"fa fa-sort\"></i>"
+    end
   end
 end
