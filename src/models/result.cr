@@ -20,4 +20,8 @@ class Result < Jennifer::Model::Base
   belongs_to :group, Group
 
   has_many :result_race_disciplines, ResultRaceDiscipline, { order(position: :asc) }
+
+  def time_format
+    time.nil? ? "DNF" : time
+  end
 end

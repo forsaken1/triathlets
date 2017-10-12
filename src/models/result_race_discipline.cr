@@ -30,6 +30,12 @@ class ResultRaceDiscipline < Jennifer::Model::Base
       else
         "-"
       end
+    else
+      "-"
     end
+  end
+
+  def time_format
+    time.nil? ? "-" : time
   end
 end
