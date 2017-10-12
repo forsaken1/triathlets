@@ -17,10 +17,12 @@ table.table.table-striped
     - race_disciplines.to_a.each_with_index do |race_discipline, i|
       th class="discipline-#{race_discipline.discipline!.name}"
         a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: order == "asc" && params["position"]? ? "desc" : "asc", position: i.to_s)}" = race_discipline.discipline!.title
+          == sort_icon i
         br
         = race_discipline.distance_format
     th
       a href="#{race_path(race, group_id: params["group_id"]? && params["group_id"], order: order == "asc" && !params["position"]? ? "desc" : "asc")}" = "Итог"
+        == sort_icon nil
 
   - results.to_a.each_with_index do |result, i|
     tr
@@ -30,8 +32,8 @@ table.table.table-striped
       td rowspan="2" = result.city!.name
       td rowspan="2" = result.user!.year
       - result.result_race_disciplines.each do |result_race_discipline|
-        td class="discipline-#{result_race_discipline.race_discipline!.discipline!.name}" = result_race_discipline.time
-      td rowspan="2" = result.time
+        td class="discipline-#{result_race_discipline.race_discipline!.discipline!.name}" = result_race_discipline.time_format
+      td rowspan="2" = result.time_format
 
     tr
       - result.result_race_disciplines.each do |result_race_discipline|
