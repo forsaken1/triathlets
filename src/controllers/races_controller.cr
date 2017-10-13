@@ -1,6 +1,8 @@
 class RacesController < ApplicationController
   def show
-    race_disciplines = RaceDiscipline.where { _race_id == race.id }.ordered.includes(:discipline)
+    race_disciplines = RaceDiscipline.where { _race_id == race.id }.ordered.includes(:discipline).to_a
+    race_disciplines_hash = race_disciplines.map { |o| { o.id, o } }.to_h
+    includes results
     render("show.slang")
   end
 
@@ -29,7 +31,37 @@ class RacesController < ApplicationController
         ORDER BY TO_TIMESTAMP(results.time, 'HH24.MI.SS') #{order}",
         [race.id]
       )
-    end.as(Array(Result))#.includes(:result_race_disciplines).includes(:user).as(Jennifer::QueryBuilder::ModelQuery(Result))
+    end.as(Array(Result))
+  end
+
+  private def includes(collection)
+    result_ids, user_ids, team_ids, city_ids = [] of Int32, [] of Int32, [] of Int32, [] of Int32
+    collection.each do |item|
+      user_ids << item.user_id
+      team_ids << item.team_id
+      city_ids << item.city_id
+      result_ids << item.id.as(Int32)
+    end
+    @users = User.search_by_sql("SELECT * FROM users WHERE id IN (#{user_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(User) } }.to_h.as(Hash(Int32, User))
+    @teams = Team.search_by_sql("SELECT * FROM teams WHERE id IN (#{team_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(Team) } }.to_h.as(Hash(Int32, Team))
+    @cities = City.search_by_sql("SELECT * FROM cities WHERE id IN (#{city_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(City) } }.to_h.as(Hash(Int32, City))
+    @result_race_disciplines = ResultRaceDiscipline.search_by_sql("SELECT * FROM result_race_disciplines WHERE result_id IN (#{result_ids.join(",")})").as(Array(ResultRaceDiscipline))
+  end
+
+  private def users
+    @users.as(Hash(Int32, User))
+  end
+
+  private def teams
+    @teams.as(Hash(Int32, Team))
+  end
+
+  private def cities
+    @cities.as(Hash(Int32, City))
+  end
+
+  private def result_race_disciplines
+    @result_race_disciplines.as(Array(ResultRaceDiscipline))
   end
 
   # All results for current race
@@ -47,7 +79,12 @@ class RacesController < ApplicationController
 
   # Groups list from all results for race
   private def groups
-    @groups ||= Group.search_by_sql("SELECT * FROM groups WHERE id IN (#{group_ids.join(",")})").as(Array(Group))
+    # where in jennifer!
+    @groups ||= if group_ids.any?
+                  Group.search_by_sql("SELECT * FROM groups WHERE id IN (#{group_ids.join(",")})").as(Array(Group))
+                else
+                  [] of Group
+                end
   end
 
   # For tabs
