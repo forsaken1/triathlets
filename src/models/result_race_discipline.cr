@@ -12,20 +12,20 @@ class ResultRaceDiscipline < Jennifer::Model::Base
 
   belongs_to :race_discipline, RaceDiscipline
 
-  def speed
+  def speed(_race_discipline)
     unless time.nil?
       t = Time.parse time.as(String), "%X"
       seconds = t.ticks / 10_000_000
-      case race_discipline!.discipline!.name
+      case _race_discipline.discipline!.name
       when "swim"
-        seconds_at_100m = seconds / race_discipline!.distance / 10
+        seconds_at_100m = seconds / _race_discipline.distance / 10
         "#{seconds_at_100m.to_i / 60}:#{Calculate.two_digits seconds_at_100m.to_i % 60} мин/100 м"
       when "bicycle"
         hour_f = seconds / 3600.0
-        speed = race_discipline!.distance / hour_f
+        speed = _race_discipline.distance / hour_f
         "#{speed.round 2} км/ч"
       when "run"
-        seconds_at_km = seconds / race_discipline!.distance
+        seconds_at_km = seconds / _race_discipline.distance
         "#{seconds_at_km.to_i / 60}:#{Calculate.two_digits seconds_at_km.to_i % 60} мин/км"
       else
         "-"
