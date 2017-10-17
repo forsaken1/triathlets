@@ -27,4 +27,8 @@ Amber::Server.configure do |app|
     get "/users", UsersController, :index
     get "/users/:id", UsersController, :show
   end
+
+  routes :web, "/admin" do
+    get "/", Admin::DashboardController, :index
+  end
 end
