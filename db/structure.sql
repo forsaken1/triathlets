@@ -366,7 +366,6 @@ CREATE TABLE users (
     name character varying(254),
     qualification character varying(254),
     year integer,
-    team_id integer,
     created_at timestamp without time zone,
     updated_at timestamp without time zone
 );

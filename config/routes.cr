@@ -24,5 +24,7 @@ Amber::Server.configure do |app|
     get "/", HomeController, :index
     get "/about", HomeController, :about
     get "/races/:id", RacesController, :show
+    get "/users", UsersController, :index
+    get "/users/:id", UsersController, :show
   end
 end

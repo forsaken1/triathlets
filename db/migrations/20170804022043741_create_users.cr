@@ -4,7 +4,6 @@ class CreateUsers20170804022043741 < Jennifer::Migration::Base
       t.string :name
       t.string :qualification
       t.integer :year
-      t.reference :team
       t.timestamps
     end
   end

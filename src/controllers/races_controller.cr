@@ -92,18 +92,6 @@ class RacesController < ApplicationController
     params["group_id"]? && params["group_id"].to_i == group.id
   end
 
-  # Route helper for race
-  private def race_path(race, **attributes)
-    joined_attrs = unless attributes.empty?
-              "?" + attributes.map do |key, value|
-                      "#{key}=#{value}" unless value.nil? || value.blank?
-                    end.compact.join("&")
-            else
-              ""
-            end
-    "/races/#{race.id}#{joined_attrs}"
-  end
-
   # Safe current order
   private def order
     if params["order"]? && params["order"] == "desc"

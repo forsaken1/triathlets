@@ -27,7 +27,9 @@ table.table.table-striped
   - results.to_a.each_with_index do |result, i|
     tr
       td rowspan="2" = i + 1
-      td rowspan="2" = users[result.user_id].name
+      td rowspan="2"
+        a href=user_path(users[result.user_id])
+          = users[result.user_id].name
       td rowspan="2" = teams[result.team_id].name
       td rowspan="2" = cities[result.city_id].name
       td rowspan="2" = users[result.user_id].year
