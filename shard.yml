@@ -10,9 +10,9 @@ license: MIT
 
 dependencies:
   amber:
-    github: amber-crystal/amber 
+    github: amber-crystal/amber
 
-  quartz-mailer:
+  quartz_mailer:
     github: amber-crystal/quartz-mailer
 
   jennifer:

@@ -30,5 +30,6 @@ Amber::Server.configure do |app|
 
   routes :web, "/admin" do
     get "/", Admin::DashboardController, :index
+    resources "/resources", Admin::ResourcesController, only: [:index, :show, :create, :update, :destroy]
   end
 end
