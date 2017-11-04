@@ -23,7 +23,7 @@ describe "Admin::Resources" do
     end
   end
 
-  describe "PUT /admin/resources" do
+  describe "PUT /admin/resources/:id" do
     it "responds successfully" do
       resource = User.create name: "test user"
       put "/admin/resources/#{resource.id}"
@@ -31,7 +31,7 @@ describe "Admin::Resources" do
     end
   end
 
-  describe "GET /admin/resources" do
+  describe "DELETE /admin/resources/:id" do
     it "responds successfully" do
       resource = User.create name: "test user"
       delete "/admin/resources/#{resource.id}"
