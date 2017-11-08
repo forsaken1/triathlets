@@ -42,10 +42,10 @@ class RacesController < ApplicationController
       city_ids << item.city_id
       result_ids << item.id.as(Int32)
     end
-    @users = User.search_by_sql("SELECT * FROM users WHERE id IN (#{user_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(User) } }.to_h.as(Hash(Int32, User))
-    @teams = Team.search_by_sql("SELECT * FROM teams WHERE id IN (#{team_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(Team) } }.to_h.as(Hash(Int32, Team))
-    @cities = City.search_by_sql("SELECT * FROM cities WHERE id IN (#{city_ids.join(",")})").map { |o| { o.id.as(Int32), o.as(City) } }.to_h.as(Hash(Int32, City))
-    @result_race_disciplines = ResultRaceDiscipline.search_by_sql("SELECT * FROM result_race_disciplines WHERE result_id IN (#{result_ids.join(",")})").as(Array(ResultRaceDiscipline))
+    @users = User.search_by_sql("SELECT * FROM users WHERE id IN (#{user_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(User) } }.to_h.as(Hash(Int32, User))
+    @teams = Team.search_by_sql("SELECT * FROM teams WHERE id IN (#{team_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(Team) } }.to_h.as(Hash(Int32, Team))
+    @cities = City.search_by_sql("SELECT * FROM cities WHERE id IN (#{city_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(City) } }.to_h.as(Hash(Int32, City))
+    @result_race_disciplines = ResultRaceDiscipline.search_by_sql("SELECT * FROM result_race_disciplines WHERE result_id IN (#{result_ids.uniq.join(",")})").as(Array(ResultRaceDiscipline))
   end
 
   private def users
