@@ -10,4 +10,8 @@ class User < Jennifer::Model::Base
   )
 
   has_many :races, Race
+
+  def to_json(io : JSON::Builder)
+    {id: id, name: name, year: year}
+  end
 end
