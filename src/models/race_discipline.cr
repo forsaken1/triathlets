@@ -20,8 +20,10 @@ class RaceDiscipline < Jennifer::Model::Base
       "#{(distance * 1000).to_i} м"
     when "bicycle", "run"
       "#{distance.to_i} км"
-    else
+    when "transit"
       "-"
+    else
+      "#{distance.to_i} км"
     end
   end
 end
