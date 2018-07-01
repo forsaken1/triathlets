@@ -3,6 +3,16 @@ require "jennifer"
 require "../config/jennifer"
 require "../src/models/*"
 
+def relative_to_absolute(*results)
+  [results.last, results.first] + results.to_a.rotate.map_with_index do |e, i|
+    if e != nil && results[i] != nil
+      (Time.parse(e.as(String), "%X") - Time.parse(results[i].as(String), "%X")).to_s
+    else
+      nil
+    end
+  end[0...results.size - 1]
+end
+
 # Delete all info
 
 ResultRaceDiscipline.all.delete
@@ -143,6 +153,16 @@ USERS = {
   "Маликов Николай"        => User.create(name: "Маликов Николай", year: 1985).id,
   "Кириллах Игорь"         => User.create(name: "Кириллах Игорь", year: 1989).id,
   "Якимов Кирилл"          => User.create(name: "Якимов Кирилл", year: 0).id,
+  "Петров Артем"           => User.create(name: "Петров Артем", year: 1994).id,
+  "Решетняк Максим"        => User.create(name: "Решетняк Максим", year: 1978).id,
+  "Овчинников Никита"      => User.create(name: "Овчинников Никита", year: 1993).id,
+  "Телин Евгений"          => User.create(name: "Телин Евгений", year: 1987).id,
+  "Ткаченко Светлана"      => User.create(name: "Ткаченко Светлана", year: 1996).id,
+  "Зернин Анатолий"        => User.create(name: "Зернин Анатолий", year: 1983).id,
+  "Калошин Вячеслав"       => User.create(name: "Калошин Вячеслав", year: 1966).id,
+  "Якухный Дмитрий"        => User.create(name: "Якухный Дмитрий", year: 1972).id,
+  "Мазей Владимир"         => User.create(name: "Мазей Владимир", year: 1992).id,
+  "Житковский Павел"       => User.create(name: "Житковский Павел", year: 1972).id,
   # "" => User.create(name: "", year: 19).id,
 }
 
@@ -152,12 +172,18 @@ discipline3 = Discipline.create name: "run", title: "Бег"
 discipline4 = Discipline.create name: "transit", title: "Транзитка"
 discipline5 = Discipline.create name: "bicycle-swim", title: "Вело + плавание"
 
-def add_result(race, group_name, user_name, city_name, team_name, all_result, *results)
+def add_result(race, group_name, user_name, city_name, team_name, *results)
+  add_result(race, group_name, user_name, city_name, team_name, results)
+end
+
+def add_result(race, group_name, user_name, city_name, team_name, results = [] of String)
+  results_array = results.to_a
+  all_result = results_array.shift
   result_attrs = {user_id: USERS[user_name], race_id: race.id, city_id: CITIES[city_name], team_id: TEAMS[team_name], time: all_result}.to_h
   result_attrs.merge!({group_id: GROUPS[group_name]}.to_h) if group_name
   result = Result.create result_attrs
 
-  results.each_with_index do |res, i|
+  results_array.each_with_index do |res, i|
     ResultRaceDiscipline.create(result_id: result.id, race_discipline_id: race.race_disciplines[i].id, position: i, time: res)
   end
 end
@@ -304,5 +330,45 @@ add_result(race3, "Мужчины МТБ", "Падалко Максим", "Вл�
 
 add_result(race3, "Женщины МТБ", "Трощинская Яна", "Владивосток", "IRON TEAM", "4:24:48", "3:21:12", "1:03:36")
 add_result(race3, "Женщины МТБ", "Таюрская Юлия", "Владивосток", "IRON TEAM", "5:51:57", "4:21:20", "1:30:37")
+
+# Rainbowman 2017
+
+race4 = Race.create title: "Спринт-триатлон в Уссурийске на базе Южная", date: "16.09.2017"
+
+RaceDiscipline.create race_id: race4.id, discipline_id: discipline1.id, position: 1, distance: 0.5.to_f32
+RaceDiscipline.create race_id: race4.id, discipline_id: discipline4.id, position: 2, distance: 0.0.to_f32
+RaceDiscipline.create race_id: race4.id, discipline_id: discipline2.id, position: 3, distance: 20.0.to_f32
+RaceDiscipline.create race_id: race4.id, discipline_id: discipline4.id, position: 4, distance: 0.0.to_f32
+RaceDiscipline.create race_id: race4.id, discipline_id: discipline3.id, position: 5, distance: 5.0.to_f32
+
+add_result(race4, "Мужчины МТБ", "Коноплин Александр", "Артем", "Лично", relative_to_absolute("0:10:08", "0:11:21", "0:53:15", "0:54:55", "1:14:32"))
+add_result(race4, "Мужчины МТБ", "Котельвин Максим", "Уссурийск", "Лично", relative_to_absolute("0:08:17", "0:09:50", "0:53:18", "0:55:02", "1:15:02"))
+add_result(race4, "Мужчины МТБ", "Коноплин Никита", "Артем", "Лично", relative_to_absolute("0:08:09", "0:09:16", "0:57:10", "0:58:29", "1:18:35"))
+add_result(race4, "Мужчины МТБ", "Петров Артем", "Уссурийск", "Лично", relative_to_absolute("0:09:54", "0:11:37", "0:59:23", "1:01:50", "1:23:18"))
+add_result(race4, "Мужчины МТБ", "Мазняк Антон", "Арсеньев", "Лично", relative_to_absolute("0:11:38", "0:13:43", "0:59:22", "1:01:55", "1:23:22"))
+
+add_result(race4, "Мужчины МТБ", "Решетняк Максим", "Уссурийск", "Лично", relative_to_absolute("0:08:33", "0:11:16", "0:59:22", "1:02:49", "1:26:13"))
+add_result(race4, "Мужчины МТБ", "Чубукин Сергей", "Арсеньев", "Лично", relative_to_absolute("0:09:59", "0:13:06", "1:02:56", "1:05:26", "1:26:50"))
+add_result(race4, "Мужчины МТБ", "Овчинников Никита", "Владивосток", "Лично", relative_to_absolute("0:08:41", "0:11:37", "1:04:38", "1:05:50", "1:27:31"))
+add_result(race4, "Мужчины МТБ", "Телин Евгений", "Находка", "Лично", relative_to_absolute("0:10:33", "0:12:50", "1:05:24", "1:07:49", "1:29:11"))
+add_result(race4, "Мужчины МТБ", "Денейкин Сергей", "Партизанск", "Лично", relative_to_absolute("0:12:15", "0:14:57", "1:04:44", "1:06:05", "1:31:40"))
+
+add_result(race4, "Мужчины МТБ", "Багрянов Максим", "Владивосток", "Лично", relative_to_absolute("0:08:43", "0:10:37", "1:01:52", "1:03:15", "1:31:50"))
+add_result(race4, "Мужчины МТБ", "Смычков Алексей", "Партизанск", "Лично", relative_to_absolute("0:10:19", "0:12:30", "1:08:31", "1:10:59", "1:33:45"))
+add_result(race4, "Мужчины МТБ", "Епишко Алексей", "Партизанск", "Лично", relative_to_absolute("0:10:50", "0:13:47", "1:07:48", "1:10:40", "1:37:30"))
+add_result(race4, "Мужчины МТБ", "Падалко Максим", "Владивосток", "Лично", relative_to_absolute("0:15:28", "0:17:30", "1:09:41", "1:12:12", "1:38:38"))
+add_result(race4, "Мужчины МТБ", "Якухный Дмитрий", "Владивосток", "Лично", relative_to_absolute("0:09:26", "0:10:33", "1:18:23", "1:20:28", "1:40:19"))
+
+add_result(race4, "Мужчины МТБ", "Зернин Анатолий", "Уссурийск", "Лично", relative_to_absolute("0:11:29", "0:14:33", "1:12:37", "1:15:20", "1:40:38"))
+add_result(race4, "Мужчины МТБ", "Крылов Алексей", "Владивосток", "Лично", relative_to_absolute("0:11:49", "0:14:08", "1:09:32", "1:13:00", "1:43:50"))
+add_result(race4, "Мужчины МТБ", "Дубов Виталий", "Владивосток", "Лично", relative_to_absolute("0:12:32", "0:15:55", "1:17:19", "1:20:35", "1:45:49"))
+add_result(race4, "Мужчины МТБ", "Бабкин Вячеслав", "Партизанск", "Лично", relative_to_absolute("0:17:30", "0:20:31", "1:23:40", "1:25:02", "1:45:55"))
+add_result(race4, "Мужчины МТБ", "Калошин Вячеслав", "Владивосток", "Лично", relative_to_absolute("0:11:26", "0:16:05", "1:20:32", "1:23:35", "1:50:22"))
+
+add_result(race4, "Мужчины МТБ", "Мазей Владимир", "Уссурийск", "Лично", relative_to_absolute("0:09:45", "0:12:17", "1:20:08", "1:23:34", "2:01:34"))
+add_result(race4, "Мужчины МТБ", "Житковский Павел", "Арсеньев", "Лично", relative_to_absolute("0:11:10", "0:14:38", nil, nil, nil))
+
+add_result(race4, "Женщины МТБ", "Ткаченко Светлана", "Уссурийск", "Лично", relative_to_absolute("0:13:43", "0:16:26", "1:19:51", "1:22:20", "1:49:00"))
+add_result(race4, "Женщины МТБ", "Дубова Юлия", "Владивосток", "Лично", relative_to_absolute("0:11:32", "0:13:56", "1:19:21", "1:21:40", "1:53:10"))
 
 # add_result(race, "", "", "", "",  "0:00:00", "0:00:00", "0:00:00", "0:00:00", "0:00:00", "0:00:00")
