@@ -6,15 +6,20 @@ require "./lib"
 
 # Delete all info
 
-ResultRaceDiscipline.all.delete
-RaceDiscipline.all.delete
-Discipline.all.delete
-Result.all.delete
-User.all.delete
-Race.all.delete
-Team.all.delete
-City.all.delete
-Group.all.delete
+[
+  "users",
+  "result_race_disciplines",
+  "race_disciplines",
+  "disciplines",
+  "results",
+  "races",
+  "teams",
+  "cities",
+  "groups",
+].each do |table_name|
+  Jennifer::Adapter.adapter.truncate(table_name)
+  Jennifer::Adapter.adapter.exec("ALTER SEQUENCE \"#{table_name}_id_seq\" RESTART WITH 1;")
+end
 
 # Groups
 
