@@ -10,4 +10,6 @@ class User < Jennifer::Model::Base
   )
 
   has_many :races, Race
+
+  scope :search { |name| where { _name.like("%#{name}%") } }
 end

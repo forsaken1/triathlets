@@ -1,8 +1,9 @@
 class RacesController < ApplicationController
   def show
     race_disciplines = RaceDiscipline.where { _race_id == race.id }.ordered.includes(:discipline).to_a
-    race_disciplines_hash = race_disciplines.map { |o| { o.id, o } }.to_h
+    race_disciplines_hash = race_disciplines.map { |o| {o.id, o} }.to_h
     includes results
+    best = Best.new users, results, result_race_disciplines, race_disciplines
     render("show.slang")
   end
 
@@ -14,24 +15,24 @@ class RacesController < ApplicationController
   # Filter results for current race
   private def results
     @results ||= if params["position"]?
-      Result.search_by_sql(
-        "SELECT results.* FROM results
-        LEFT JOIN result_race_disciplines ON result_race_disciplines.result_id = results.id
-        AND result_race_disciplines.position = #{params["position"].to_i}
-        WHERE results.race_id = $1
-        #{group_id_sql}
-        ORDER BY TO_TIMESTAMP(result_race_disciplines.time, 'HH24.MI.SS') #{order}",
-        [race.id]
-      )
-    else
-      Result.search_by_sql(
-        "SELECT results.* FROM results
-        WHERE results.race_id = $1
-        #{group_id_sql}
-        ORDER BY TO_TIMESTAMP(results.time, 'HH24.MI.SS') #{order}",
-        [race.id]
-      )
-    end.as(Array(Result))
+                   Result.search_by_sql(
+                     "SELECT results.* FROM results
+                      LEFT JOIN result_race_disciplines ON result_race_disciplines.result_id = results.id
+                      AND result_race_disciplines.position = #{params["position"].to_i}
+                      WHERE results.race_id = $1
+                      #{group_id_sql}
+                      ORDER BY TO_TIMESTAMP(result_race_disciplines.time, 'HH24.MI.SS') #{order}",
+                     [race.id]
+                   )
+                 else
+                   Result.search_by_sql(
+                     "SELECT results.* FROM results
+                      WHERE results.race_id = $1
+                      #{group_id_sql}
+                      ORDER BY TO_TIMESTAMP(results.time, 'HH24.MI.SS') #{order}",
+                     [race.id]
+                   )
+                 end.as(Array(Result))
   end
 
   private def includes(collection)
@@ -42,9 +43,9 @@ class RacesController < ApplicationController
       city_ids << item.city_id
       result_ids << item.id.as(Int32)
     end
-    @users = User.search_by_sql("SELECT * FROM users WHERE id IN (#{user_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(User) } }.to_h.as(Hash(Int32, User))
-    @teams = Team.search_by_sql("SELECT * FROM teams WHERE id IN (#{team_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(Team) } }.to_h.as(Hash(Int32, Team))
-    @cities = City.search_by_sql("SELECT * FROM cities WHERE id IN (#{city_ids.uniq.join(",")})").map { |o| { o.id.as(Int32), o.as(City) } }.to_h.as(Hash(Int32, City))
+    @users = User.search_by_sql("SELECT * FROM users WHERE id IN (#{user_ids.uniq.join(",")})").map { |o| {o.id.as(Int32), o.as(User)} }.to_h.as(Hash(Int32, User))
+    @teams = Team.search_by_sql("SELECT * FROM teams WHERE id IN (#{team_ids.uniq.join(",")})").map { |o| {o.id.as(Int32), o.as(Team)} }.to_h.as(Hash(Int32, Team))
+    @cities = City.search_by_sql("SELECT * FROM cities WHERE id IN (#{city_ids.uniq.join(",")})").map { |o| {o.id.as(Int32), o.as(City)} }.to_h.as(Hash(Int32, City))
     @result_race_disciplines = ResultRaceDiscipline.search_by_sql("SELECT * FROM result_race_disciplines WHERE result_id IN (#{result_ids.uniq.join(",")})").as(Array(ResultRaceDiscipline))
   end
 
