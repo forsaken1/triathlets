@@ -1,5 +1,35 @@
 h2 = race.title
 
+.container.best
+  .row
+    - if best.swim?
+      .col-lg-3
+        .item
+          h3 = "Лучший пловец"
+          h4 = best.swimmer.name
+          p = best.swimmer_time
+          p = best.swimmer_speed
+    - if best.bicycle?
+      .col-lg-3
+        .item
+          h3 = "Лучший велосипедист"
+          h4 = best.bicyclist.name
+          p = best.bicyclist_time
+          p = best.bicyclist_speed
+    - if best.run?
+      .col-lg-3
+        .item
+          h3 = "Лучший бегун"
+          h4 = best.runner.name
+          p = best.runner_time
+          p = best.runner_speed
+    - if best.transit?
+      .col-lg-3
+        .item
+          h3 = "Лучшая транзитка"
+          h4 = best.transit_name
+          p = best.transit_time
+
 ul.nav.nav-tabs
   li class="#{params["group_id"]? ? "" : "active"}"
     a href=race_path(race) = "Абсолют"
@@ -30,7 +60,9 @@ table.table.table-striped
       td rowspan="2"
         a href=user_path(users[result.user_id])
           = users[result.user_id].name
-      td rowspan="2" = teams[result.team_id].name
+      td rowspan="2"
+        a href=team_path(teams[result.team_id])
+          = teams[result.team_id].name
       td rowspan="2" = cities[result.city_id].name
       td rowspan="2" = users[result.user_id].year
       - result_race_disciplines.select { |o| o.result_id == result.id }.each do |result_race_discipline|

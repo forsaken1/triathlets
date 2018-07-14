@@ -11,6 +11,7 @@ class ResultRaceDiscipline < Jennifer::Model::Base
   )
 
   belongs_to :race_discipline, RaceDiscipline
+  belongs_to :result, Result
 
   def speed(_race_discipline)
     unless time.nil?
@@ -37,5 +38,21 @@ class ResultRaceDiscipline < Jennifer::Model::Base
 
   def time_format
     time.nil? ? "-" : time
+  end
+
+  def <=>(right : ResultRaceDiscipline)
+    if !time.nil? && !right.time.nil?
+      left_time = Time.parse time.as(String), "%X"
+      right_time = Time.parse right.time.as(String), "%X"
+      if left_time > right_time
+        -1
+      elsif left_time < right_time
+        1
+      else
+        0
+      end
+    else
+      0
+    end
   end
 end
