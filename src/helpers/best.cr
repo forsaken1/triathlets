@@ -44,47 +44,63 @@ class Best
 
   # N + 1!
   def swimmer
-    @swimmer_result.as(ResultRaceDiscipline).result!.user!
+    swimmer_result.result!.user!
   end
 
   def swimmer_time
-    @swimmer_result.as(ResultRaceDiscipline).time
+    swimmer_result.time
   end
 
   def swimmer_speed
-    @swimmer_result.as(ResultRaceDiscipline).speed @swim_race_disciplines.first
+    swimmer_result.speed @swim_race_disciplines.first
   end
 
   def bicyclist
-    @bicyclist_result.as(ResultRaceDiscipline).result!.user!
+    bicyclist_result.result!.user!
   end
 
   def bicyclist_time
-    @bicyclist_result.as(ResultRaceDiscipline).time
+    bicyclist_result.time
   end
 
   def bicyclist_speed
-    @bicyclist_result.as(ResultRaceDiscipline).speed @bicycle_race_disciplines.first
+    bicyclist_result.speed @bicycle_race_disciplines.first
   end
 
   def runner
-    @runner_result.as(ResultRaceDiscipline).result!.user!
+    runner_result.result!.user!
   end
 
   def runner_time
-    @runner_result.as(ResultRaceDiscipline).time
+    runner_result.time
   end
 
   def runner_speed
-    @runner_result.as(ResultRaceDiscipline).speed @run_race_disciplines.first
+    runner_result.speed @run_race_disciplines.first
   end
 
   def transit_name
-    @transit_results.as(Array(Time | User))[1].as(User).name
+    transit_results[1].as(User).name
   end
 
   def transit_time
-    @transit_results.as(Array(Time | User))[0].as(Time).to_s "%X"
+    transit_results[0].as(Time).to_s "%X"
+  end
+
+  private def swimmer_result
+    @swimmer_result.as(ResultRaceDiscipline)
+  end
+
+  private def bicyclist_result
+    @bicyclist_result.as(ResultRaceDiscipline)
+  end
+
+  private def runner_result
+    @runner_result.as(ResultRaceDiscipline)
+  end
+
+  private def transit_results
+    @transit_results.as(Array(Time | User))
   end
 
   private def discipline_by_name(name)
@@ -94,28 +110,28 @@ class Best
   end
 
   private def result_race_discipline_by_race_discipline(race_disciplines)
-    @result_race_disciplines
-      .select { |e| race_disciplines.map(&.id).includes?(e.race_discipline_id) }
-      .sort { |x, y| x <=> y }
-      .last
-      .as(ResultRaceDiscipline)
+    result_race_disciplines = @result_race_disciplines
+                                .select { |e| race_disciplines.map(&.id).includes?(e.race_discipline_id) && e.time }
+                                .sort { |x, y| x <=> y }
+
+    result_race_disciplines.last.as(ResultRaceDiscipline) if result_race_disciplines.any?
   end
 
   private def result_race_discipline_by_transit(transit_race_disciplines)
-    @result_race_disciplines
-      .select { |e| transit_race_disciplines.map(&.id).includes?(e.race_discipline_id) }
-      .group_by { |e| e.result_id }
-      .map do |result_id, result_race_disciplines|
-        if result_race_disciplines.all? { |e| e.time }
-          [
-            result_race_disciplines.reduce(Time.parse("0:0:0", "%X")) { |acc, e| acc + Time.parse(e.time.as(String), "%X") },
-            @users[@results.find { |e| e.id == result_id }.as(Result).user_id],
-          ]
-        end
-      end
-      .compact
-      .sort { |x, y| x[0].as(Time) <=> y[0].as(Time) }
-      .first
-      .as(Array(Time | User))
+    result_race_disciplines = @result_race_disciplines
+                                .select { |e| transit_race_disciplines.map(&.id).includes?(e.race_discipline_id) }
+                                .group_by { |e| e.result_id }
+                                .map do |result_id, result_race_disciplines|
+                                  if result_race_disciplines.all? { |e| e.time }
+                                    [
+                                      result_race_disciplines.reduce(Time.parse("0:0:0", "%X")) { |acc, e| acc + Time.parse(e.time.as(String), "%X") },
+                                      @users[@results.find { |e| e.id == result_id }.as(Result).user_id],
+                                    ]
+                                  end
+                                end
+                                .compact
+                                .sort { |x, y| x[0].as(Time) <=> y[0].as(Time) }
+
+    result_race_disciplines.first.as(Array(Time | User)) if result_race_disciplines.any?
   end
 end
