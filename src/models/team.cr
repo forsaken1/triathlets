@@ -7,5 +7,7 @@ class Team < Jennifer::Model::Base
     updated_at: {type: Time, null: true}
   )
 
-  scope :search { |name| where { _name.like("%#{name}%") } }
+  def self.search(name)
+    search_by_sql "SELECT teams.* FROM teams WHERE teams.name ILIKE '%#{name}%'"
+  end
 end

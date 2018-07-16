@@ -9,7 +9,7 @@ class TeamsController < ApplicationController
     render("show.slang")
   end
 
-  def name
+  private def name
     params["name"]? ? params["name"] : ""
   end
 end
