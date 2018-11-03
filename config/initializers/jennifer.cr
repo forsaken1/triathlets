@@ -1,3 +1,6 @@
+require "jennifer"
+require "jennifer/adapter/postgres"
+
 require "colorize"
 
 Jennifer::Config.read("config/database.yml", :development)

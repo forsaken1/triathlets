@@ -1,4 +1,5 @@
 /doc/
+/bin
 /libs/
 /lib/
 /.crystal/
@@ -6,4 +7,5 @@
 .env
 app
 triathlets
-
+.DS_Store
+package-lock.json
