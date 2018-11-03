@@ -12,6 +12,6 @@ class User < Jennifer::Model::Base
   has_many :races, Race
 
   def self.search(name)
-    search_by_sql "SELECT users.* FROM users WHERE users.name ILIKE '%#{name}%'"
+    # search_by_sql "SELECT users.* FROM users WHERE users.name ILIKE '%#{name}%'"
   end
 end

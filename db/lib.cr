@@ -17,7 +17,7 @@ end
 def relative_to_absolute(*results)
   [results.last, results.first] + results.to_a.rotate.map_with_index do |e, i|
     if e != nil && results[i] != nil
-      (Time.parse(e.as(String), "%X") - Time.parse(results[i].as(String), "%X")).to_s
+      (Time.parse!(e.as(String), "%X") - Time.parse!(results[i].as(String), "%X")).to_s
     else
       nil
     end

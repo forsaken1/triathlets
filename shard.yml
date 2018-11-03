@@ -1,23 +1,23 @@
 name: triathlets
-version: 0.1.0
+version: 0.1.1
 
 authors:
   - Amber <contact@ambercr.io>
 
-crystal: 0.23.0
+crystal: 0.26.1
 
 license: MIT
 
 dependencies:
   amber:
-    github: amber-crystal/amber 
+    github: amberframework/amber 
 
-  quartz-mailer:
-    github: amber-crystal/quartz-mailer
+  quartz_mailer:
+    github: amberframework/quartz-mailer
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: 0.3.2
+    version: "~> 0.6.2"
 
   sam:
     github: imdrasil/sam.cr
@@ -26,5 +26,5 @@ dependencies:
     github: will/crystal-pg
 
 development_dependencies:
-  amber_spec:
-    github: amber-crystal/amber-spec
+  garnet_spec:
+    github: amberframework/garnet-spec
