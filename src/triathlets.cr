@@ -1,10 +1,10 @@
-require "jennifer/adapter/postgres"
 require "jennifer"
+require "jennifer/adapter/postgres"
 
 require "amber"
 require "../config/*"
-require "./helpers/**"
 require "./models/**"
+require "./helpers/**"
 require "./mailers/**"
 require "./controllers/application_controller"
 require "./controllers/**"

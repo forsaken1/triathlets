@@ -2,12 +2,18 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 10.5
+-- Dumped by pg_dump version 10.5
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
@@ -23,31 +29,30 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
-SET search_path = public, pg_catalog;
-
 SET default_tablespace = '';
 
 SET default_with_oids = false;
 
 --
--- Name: cities; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: cities; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE cities (
+CREATE TABLE public.cities (
     id integer NOT NULL,
     name character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE cities OWNER TO postgres;
+ALTER TABLE public.cities OWNER TO postgres;
 
 --
 -- Name: cities_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE cities_id_seq
+CREATE SEQUENCE public.cities_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -55,35 +60,36 @@ CREATE SEQUENCE cities_id_seq
     CACHE 1;
 
 
-ALTER TABLE cities_id_seq OWNER TO postgres;
+ALTER TABLE public.cities_id_seq OWNER TO postgres;
 
 --
 -- Name: cities_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE cities_id_seq OWNED BY cities.id;
+ALTER SEQUENCE public.cities_id_seq OWNED BY public.cities.id;
 
 
 --
--- Name: disciplines; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: disciplines; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE disciplines (
+CREATE TABLE public.disciplines (
     id integer NOT NULL,
     name character varying(254),
     title character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE disciplines OWNER TO postgres;
+ALTER TABLE public.disciplines OWNER TO postgres;
 
 --
 -- Name: disciplines_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE disciplines_id_seq
+CREATE SEQUENCE public.disciplines_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -91,34 +97,35 @@ CREATE SEQUENCE disciplines_id_seq
     CACHE 1;
 
 
-ALTER TABLE disciplines_id_seq OWNER TO postgres;
+ALTER TABLE public.disciplines_id_seq OWNER TO postgres;
 
 --
 -- Name: disciplines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE disciplines_id_seq OWNED BY disciplines.id;
+ALTER SEQUENCE public.disciplines_id_seq OWNED BY public.disciplines.id;
 
 
 --
--- Name: groups; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: groups; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE groups (
+CREATE TABLE public.groups (
     id integer NOT NULL,
     name character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE groups OWNER TO postgres;
+ALTER TABLE public.groups OWNER TO postgres;
 
 --
 -- Name: groups_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE groups_id_seq
+CREATE SEQUENCE public.groups_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -126,32 +133,33 @@ CREATE SEQUENCE groups_id_seq
     CACHE 1;
 
 
-ALTER TABLE groups_id_seq OWNER TO postgres;
+ALTER TABLE public.groups_id_seq OWNER TO postgres;
 
 --
 -- Name: groups_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE groups_id_seq OWNED BY groups.id;
+ALTER SEQUENCE public.groups_id_seq OWNED BY public.groups.id;
 
 
 --
--- Name: migration_versions; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: migration_versions; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE migration_versions (
+CREATE TABLE public.migration_versions (
     id integer NOT NULL,
-    version character varying(17)
+    version character varying(17) NOT NULL
 );
 
 
-ALTER TABLE migration_versions OWNER TO postgres;
+ALTER TABLE public.migration_versions OWNER TO postgres;
 
 --
 -- Name: migration_versions_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE migration_versions_id_seq
+CREATE SEQUENCE public.migration_versions_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -159,37 +167,38 @@ CREATE SEQUENCE migration_versions_id_seq
     CACHE 1;
 
 
-ALTER TABLE migration_versions_id_seq OWNER TO postgres;
+ALTER TABLE public.migration_versions_id_seq OWNER TO postgres;
 
 --
 -- Name: migration_versions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE migration_versions_id_seq OWNED BY migration_versions.id;
+ALTER SEQUENCE public.migration_versions_id_seq OWNED BY public.migration_versions.id;
 
 
 --
--- Name: race_disciplines; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: race_disciplines; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE race_disciplines (
+CREATE TABLE public.race_disciplines (
     id integer NOT NULL,
     race_id integer,
     discipline_id integer,
     "position" integer,
     distance real,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE race_disciplines OWNER TO postgres;
+ALTER TABLE public.race_disciplines OWNER TO postgres;
 
 --
 -- Name: race_disciplines_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE race_disciplines_id_seq
+CREATE SEQUENCE public.race_disciplines_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -197,36 +206,37 @@ CREATE SEQUENCE race_disciplines_id_seq
     CACHE 1;
 
 
-ALTER TABLE race_disciplines_id_seq OWNER TO postgres;
+ALTER TABLE public.race_disciplines_id_seq OWNER TO postgres;
 
 --
 -- Name: race_disciplines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE race_disciplines_id_seq OWNED BY race_disciplines.id;
+ALTER SEQUENCE public.race_disciplines_id_seq OWNED BY public.race_disciplines.id;
 
 
 --
--- Name: races; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: races; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE races (
+CREATE TABLE public.races (
     id integer NOT NULL,
     title character varying(254),
     date character varying(254),
     description text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE races OWNER TO postgres;
+ALTER TABLE public.races OWNER TO postgres;
 
 --
 -- Name: races_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE races_id_seq
+CREATE SEQUENCE public.races_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -234,37 +244,38 @@ CREATE SEQUENCE races_id_seq
     CACHE 1;
 
 
-ALTER TABLE races_id_seq OWNER TO postgres;
+ALTER TABLE public.races_id_seq OWNER TO postgres;
 
 --
 -- Name: races_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE races_id_seq OWNED BY races.id;
+ALTER SEQUENCE public.races_id_seq OWNED BY public.races.id;
 
 
 --
--- Name: result_race_disciplines; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: result_race_disciplines; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE result_race_disciplines (
+CREATE TABLE public.result_race_disciplines (
     id integer NOT NULL,
     result_id integer,
     race_discipline_id integer,
     "position" integer,
     "time" character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE result_race_disciplines OWNER TO postgres;
+ALTER TABLE public.result_race_disciplines OWNER TO postgres;
 
 --
 -- Name: result_race_disciplines_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE result_race_disciplines_id_seq
+CREATE SEQUENCE public.result_race_disciplines_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -272,20 +283,20 @@ CREATE SEQUENCE result_race_disciplines_id_seq
     CACHE 1;
 
 
-ALTER TABLE result_race_disciplines_id_seq OWNER TO postgres;
+ALTER TABLE public.result_race_disciplines_id_seq OWNER TO postgres;
 
 --
 -- Name: result_race_disciplines_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE result_race_disciplines_id_seq OWNED BY result_race_disciplines.id;
+ALTER SEQUENCE public.result_race_disciplines_id_seq OWNED BY public.result_race_disciplines.id;
 
 
 --
--- Name: results; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: results; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE results (
+CREATE TABLE public.results (
     id integer NOT NULL,
     user_id integer,
     group_id integer,
@@ -294,18 +305,19 @@ CREATE TABLE results (
     team_id integer,
     "position" integer,
     "time" character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE results OWNER TO postgres;
+ALTER TABLE public.results OWNER TO postgres;
 
 --
 -- Name: results_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE results_id_seq
+CREATE SEQUENCE public.results_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -313,34 +325,35 @@ CREATE SEQUENCE results_id_seq
     CACHE 1;
 
 
-ALTER TABLE results_id_seq OWNER TO postgres;
+ALTER TABLE public.results_id_seq OWNER TO postgres;
 
 --
 -- Name: results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE results_id_seq OWNED BY results.id;
+ALTER SEQUENCE public.results_id_seq OWNED BY public.results.id;
 
 
 --
--- Name: teams; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: teams; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE teams (
+CREATE TABLE public.teams (
     id integer NOT NULL,
     name character varying(254),
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE teams OWNER TO postgres;
+ALTER TABLE public.teams OWNER TO postgres;
 
 --
 -- Name: teams_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE teams_id_seq
+CREATE SEQUENCE public.teams_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -348,36 +361,37 @@ CREATE SEQUENCE teams_id_seq
     CACHE 1;
 
 
-ALTER TABLE teams_id_seq OWNER TO postgres;
+ALTER TABLE public.teams_id_seq OWNER TO postgres;
 
 --
 -- Name: teams_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE teams_id_seq OWNED BY teams.id;
+ALTER SEQUENCE public.teams_id_seq OWNED BY public.teams.id;
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: postgres
 --
 
-CREATE TABLE users (
+CREATE TABLE public.users (
     id integer NOT NULL,
     name character varying(254),
     qualification character varying(254),
     year integer,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
 
 
-ALTER TABLE users OWNER TO postgres;
+ALTER TABLE public.users OWNER TO postgres;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
-CREATE SEQUENCE users_id_seq
+CREATE SEQUENCE public.users_id_seq
+    AS integer
     START WITH 1
     INCREMENT BY 1
     NO MINVALUE
@@ -385,173 +399,163 @@ CREATE SEQUENCE users_id_seq
     CACHE 1;
 
 
-ALTER TABLE users_id_seq OWNER TO postgres;
+ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
 -- Name: users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
-ALTER SEQUENCE users_id_seq OWNED BY users.id;
+ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: cities id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY cities ALTER COLUMN id SET DEFAULT nextval('cities_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY disciplines ALTER COLUMN id SET DEFAULT nextval('disciplines_id_seq'::regclass);
+ALTER TABLE ONLY public.cities ALTER COLUMN id SET DEFAULT nextval('public.cities_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: disciplines id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY groups ALTER COLUMN id SET DEFAULT nextval('groups_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY migration_versions ALTER COLUMN id SET DEFAULT nextval('migration_versions_id_seq'::regclass);
+ALTER TABLE ONLY public.disciplines ALTER COLUMN id SET DEFAULT nextval('public.disciplines_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: groups id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY race_disciplines ALTER COLUMN id SET DEFAULT nextval('race_disciplines_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY races ALTER COLUMN id SET DEFAULT nextval('races_id_seq'::regclass);
+ALTER TABLE ONLY public.groups ALTER COLUMN id SET DEFAULT nextval('public.groups_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: migration_versions id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY result_race_disciplines ALTER COLUMN id SET DEFAULT nextval('result_race_disciplines_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY results ALTER COLUMN id SET DEFAULT nextval('results_id_seq'::regclass);
+ALTER TABLE ONLY public.migration_versions ALTER COLUMN id SET DEFAULT nextval('public.migration_versions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: race_disciplines id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY teams ALTER COLUMN id SET DEFAULT nextval('teams_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
+ALTER TABLE ONLY public.race_disciplines ALTER COLUMN id SET DEFAULT nextval('public.race_disciplines_id_seq'::regclass);
 
 
 --
--- Name: cities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: races id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY cities
+ALTER TABLE ONLY public.races ALTER COLUMN id SET DEFAULT nextval('public.races_id_seq'::regclass);
+
+
+--
+-- Name: result_race_disciplines id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.result_race_disciplines ALTER COLUMN id SET DEFAULT nextval('public.result_race_disciplines_id_seq'::regclass);
+
+
+--
+-- Name: results id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results ALTER COLUMN id SET DEFAULT nextval('public.results_id_seq'::regclass);
+
+
+--
+-- Name: teams id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.teams ALTER COLUMN id SET DEFAULT nextval('public.teams_id_seq'::regclass);
+
+
+--
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: cities cities_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.cities
     ADD CONSTRAINT cities_pkey PRIMARY KEY (id);
 
 
 --
--- Name: disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: disciplines disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY disciplines
+ALTER TABLE ONLY public.disciplines
     ADD CONSTRAINT disciplines_pkey PRIMARY KEY (id);
 
 
 --
--- Name: groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: groups groups_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY groups
+ALTER TABLE ONLY public.groups
     ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
 
 
 --
--- Name: migration_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: migration_versions migration_versions_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY migration_versions
+ALTER TABLE ONLY public.migration_versions
     ADD CONSTRAINT migration_versions_pkey PRIMARY KEY (id);
 
 
 --
--- Name: race_disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: race_disciplines race_disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY race_disciplines
+ALTER TABLE ONLY public.race_disciplines
     ADD CONSTRAINT race_disciplines_pkey PRIMARY KEY (id);
 
 
 --
--- Name: races_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: races races_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY races
+ALTER TABLE ONLY public.races
     ADD CONSTRAINT races_pkey PRIMARY KEY (id);
 
 
 --
--- Name: result_race_disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: result_race_disciplines result_race_disciplines_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY result_race_disciplines
+ALTER TABLE ONLY public.result_race_disciplines
     ADD CONSTRAINT result_race_disciplines_pkey PRIMARY KEY (id);
 
 
 --
--- Name: results_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: results results_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY results
+ALTER TABLE ONLY public.results
     ADD CONSTRAINT results_pkey PRIMARY KEY (id);
 
 
 --
--- Name: teams_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: teams teams_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY teams
+ALTER TABLE ONLY public.teams
     ADD CONSTRAINT teams_pkey PRIMARY KEY (id);
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY users
+ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
-
-
---
--- Name: public; Type: ACL; Schema: -; Owner: mak
---
-
-REVOKE ALL ON SCHEMA public FROM PUBLIC;
-REVOKE ALL ON SCHEMA public FROM mak;
-GRANT ALL ON SCHEMA public TO mak;
-GRANT ALL ON SCHEMA public TO PUBLIC;
 
 
 --
