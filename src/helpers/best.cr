@@ -124,7 +124,7 @@ class Best
                                 .map do |result_id, result_race_disciplines|
                                   if result_race_disciplines.all? { |e| e.time }
                                     [
-                                      result_race_disciplines.reduce(Time.parse("0:0:0", "%X")) { |acc, e| acc + Time.parse(e.time.as(String), "%X") },
+                                      result_race_disciplines.reduce(Time.parse("0:0:0", "%X", Time::Location::UTC)) { |acc, e| acc + Time.parse(e.time.as(String), "%X", Time::Location::UTC) },
                                       @users[@results.find { |e| e.id == result_id }.as(Result).user_id],
                                     ]
                                   end

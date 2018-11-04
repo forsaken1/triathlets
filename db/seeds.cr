@@ -1,6 +1,6 @@
 require "jennifer"
 require "jennifer/adapter/postgres"
-require "../config/jennifer"
+require "../config/initializers/jennifer"
 require "../src/models/*"
 require "./lib"
 

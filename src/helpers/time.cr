@@ -13,6 +13,6 @@ struct Time
                                  [minutes, 0]
                                end
     result_hours = hour + right.hour + acc_hour
-    Time.parse "#{result_hours}:#{result_minutes}:#{result_seconds}", "%X"
+    Time.parse "#{result_hours}:#{result_minutes}:#{result_seconds}", "%X", Time::Location::UTC
   end
 end
