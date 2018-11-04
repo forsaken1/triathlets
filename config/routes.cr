@@ -22,11 +22,11 @@ Amber::Server.configure do |app|
   routes :web do
     get "/", HomeController, :index
     get "/about", HomeController, :about
-    # get "/races/:id", RacesController, :show
-    # get "/users", UsersController, :index
-    # get "/users/:id", UsersController, :show
-    # get "/teams", TeamsController, :index
-    # get "/teams/:id", TeamsController, :show
+    get "/races/:id", RacesController, :show
+    get "/users", UsersController, :index
+    get "/users/:id", UsersController, :show
+    get "/teams", TeamsController, :index
+    get "/teams/:id", TeamsController, :show
   end
 
   routes :static do

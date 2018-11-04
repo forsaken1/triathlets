@@ -8,6 +8,6 @@ class Team < Jennifer::Model::Base
   )
 
   def self.search(name)
-    search_by_sql "SELECT teams.* FROM teams WHERE teams.name ILIKE '%#{name}%'"
+    all.find_by_sql "SELECT teams.* FROM teams WHERE teams.name ILIKE $1", ["%#{name}%"]
   end
 end

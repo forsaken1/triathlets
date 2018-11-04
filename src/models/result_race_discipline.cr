@@ -15,8 +15,8 @@ class ResultRaceDiscipline < Jennifer::Model::Base
 
   def speed(_race_discipline)
     unless time.nil?
-      t = Time.parse time.as(String), "%X"
-      seconds = t.ticks / 10_000_000
+      t = Time.parse time.as(String), "%X", Time::Location::UTC
+      seconds = t.second
       case _race_discipline.discipline!.name
       when "swim"
         seconds_at_100m = seconds / _race_discipline.distance / 10
@@ -46,8 +46,8 @@ class ResultRaceDiscipline < Jennifer::Model::Base
 
   def <=>(right : ResultRaceDiscipline)
     if !time.nil? && !right.time.nil?
-      left_time = Time.parse time.as(String), "%X"
-      right_time = Time.parse right.time.as(String), "%X"
+      left_time = Time.parse time.as(String), "%X", Time::Location::UTC
+      right_time = Time.parse right.time.as(String), "%X", Time::Location::UTC
       if left_time > right_time
         -1
       elsif left_time < right_time
