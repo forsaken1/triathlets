@@ -23,3 +23,20 @@ def relative_to_absolute(*results)
     end
   end[0...results.size - 1]
 end
+
+def delete_all_info
+  [
+    "users",
+    "result_race_disciplines",
+    "race_disciplines",
+    "disciplines",
+    "results",
+    "races",
+    "teams",
+    "cities",
+    "groups",
+  ].each do |table_name|
+    Jennifer::Adapter.adapter.truncate(table_name)
+    Jennifer::Adapter.adapter.exec("ALTER SEQUENCE \"#{table_name}_id_seq\" RESTART WITH 1;")
+  end
+end
