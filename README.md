@@ -4,13 +4,15 @@ Project for triathlets
 
 ## Installation
 
-Create a pg database called `demo` and configure the `config/database.yml`
-to provide the credentials to access the table.
+Install amber framework.
 
 Then:
+
 ```
 shards update
-amber migrate up
+crystal sam.cr -- db:create
+crystal sam.cr -- db:migrate
+crystal db/seeds.cr
 ```
 
 ## Usage
@@ -19,6 +21,12 @@ To run the demo:
 ```
 crystal build src/triathlets.cr
 ./triathlets
+```
+
+or
+
+```
+amber w
 ```
 
 ## Docker and Docker Compose
@@ -38,7 +46,7 @@ Note: The Docker images are compatible with Heroku.
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/your_project/fork )
+1. Fork it ( https://github.com/forsaken1/triathlets/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
