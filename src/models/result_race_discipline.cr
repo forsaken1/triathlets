@@ -16,13 +16,13 @@ class ResultRaceDiscipline < Jennifer::Model::Base
   def speed(_race_discipline)
     unless time.nil?
       t = Time.parse time.as(String), "%X", Time::Location::UTC
-      seconds = t.second
+      seconds = t.time_of_day.total_seconds
       case _race_discipline.discipline!.name
       when "swim"
         seconds_at_100m = seconds / _race_discipline.distance / 10
         "#{seconds_at_100m.to_i / 60}:#{Calculate.two_digits seconds_at_100m.to_i % 60} мин/100 м"
       when "bicycle"
-        hour_f = seconds / 3600.0
+        hour_f = seconds / 3600
         speed = _race_discipline.distance / hour_f
         "#{speed.round 2} км/ч"
       when "run"
@@ -31,7 +31,7 @@ class ResultRaceDiscipline < Jennifer::Model::Base
       when "transit"
         "-"
       else
-        hour_f = seconds / 3600.0
+        hour_f = seconds / 3600
         speed = _race_discipline.distance / hour_f
         "#{speed.round 2} км/ч"
       end
