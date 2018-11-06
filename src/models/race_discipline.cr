@@ -18,9 +18,7 @@ class RaceDiscipline < Jennifer::Model::Base
     case discipline!.name
     when "swim"
       "#{(distance * 1000).to_i} м"
-    when "bicycle", "run"
-      "#{distance.to_i} км"
-    when "transit"
+    when "transit", "penalty"
       "-"
     else
       "#{distance.to_i} км"

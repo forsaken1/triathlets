@@ -29,6 +29,12 @@ or
 amber w
 ```
 
+run in production:
+
+```
+nohup  amber r -p PORT -e production &
+```
+
 ## Docker and Docker Compose
 
 This will start an instance of postgres, migrate the database, run the specs,

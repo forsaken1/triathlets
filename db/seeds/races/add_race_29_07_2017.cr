@@ -1,5 +1,5 @@
 def add_race_29_07_2017
-  race = Race.create title: "Спринт-триатлон на о.Русском", date: "29.07.2017"
+  race = Race.create title: "Спринт-триатлон на острове Русском", date: "29.07.2017"
 
   RaceDiscipline.create race_id: race.id, discipline_id: SWIM.id, position: 1, distance: 0.75.to_f32
   RaceDiscipline.create race_id: race.id, discipline_id: TRANSIT.id, position: 2, distance: 0.0.to_f32
