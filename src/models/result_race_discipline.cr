@@ -28,7 +28,7 @@ class ResultRaceDiscipline < Jennifer::Model::Base
       when "run"
         seconds_at_km = seconds / _race_discipline.distance
         "#{seconds_at_km.to_i / 60}:#{Calculate.two_digits seconds_at_km.to_i % 60} мин/км"
-      when "transit"
+      when "transit", "penalty"
         "-"
       else
         hour_f = seconds / 3600
