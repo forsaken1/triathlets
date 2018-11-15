@@ -13,6 +13,7 @@ class RaceDiscipline < Jennifer::Model::Base
   belongs_to :discipline, Discipline
 
   scope :ordered { order(position: :asc) }
+  scope :by_race_id { |race_id| where { _race_id == race_id } }
 
   def distance_format
     case discipline!.name

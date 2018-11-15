@@ -10,7 +10,8 @@ class Race < Jennifer::Model::Base
   )
 
   has_many :results, Result
-  has_many :race_disciplines, RaceDiscipline, { order(position: :asc) }
+  has_many :race_disciplines, RaceDiscipline, {order(position: :asc)}
 
   scope :ordered { order date: "asc" }
+  scope :ordered_by_date { order({"TO_TIMESTAMP(races.date, 'DD.MM.YYYY')" => "DESC"}) }
 end

@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    races = Race.all.order({"TO_TIMESTAMP(races.date, 'DD.MM.YYYY')" => "DESC"})
+    races = Race.all.ordered_by_date
     render("index.slang")
   end
 
