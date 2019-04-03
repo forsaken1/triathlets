@@ -11,6 +11,7 @@ license: MIT
 dependencies:
   amber:
     github: amberframework/amber 
+    version: "~> 0.27"
 
   quartz_mailer:
     github: amberframework/quartz-mailer

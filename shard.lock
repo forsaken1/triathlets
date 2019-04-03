@@ -2,7 +2,7 @@ version: 1.0
 shards:
   amber:
     github: amberframework/amber
-    version: 0.11.3
+    version: 0.27.0
 
   amber_router:
     github: amberframework/amber-router
@@ -26,11 +26,11 @@ shards:
 
   email:
     github: arcage/crystal-email
-    version: 0.3.2
+    version: 0.3.3
 
   exception_page:
     github: crystal-loot/exception_page
-    version: 0.1.1
+    version: 0.1.2
 
   garnet_spec:
     github: amberframework/garnet-spec
@@ -50,7 +50,7 @@ shards:
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: 0.7.0
+    version: 0.7.1
 
   kilt:
     github: jeromegn/kilt
