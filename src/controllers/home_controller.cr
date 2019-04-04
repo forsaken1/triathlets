@@ -1,6 +1,6 @@
 class HomeController < ApplicationController
   def index
-    races = Race.search_by_sql "SELECT * FROM races ORDER BY TO_TIMESTAMP(races.date, 'DD.MM.YYYY') DESC"
+    races = Race.all.ordered_by_date
     render("index.slang")
   end
 
@@ -8,4 +8,3 @@ class HomeController < ApplicationController
     render("about.slang")
   end
 end
-

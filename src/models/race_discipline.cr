@@ -13,15 +13,16 @@ class RaceDiscipline < Jennifer::Model::Base
   belongs_to :discipline, Discipline
 
   scope :ordered { order(position: :asc) }
+  scope :by_race_id { |race_id| where { _race_id == race_id } }
 
   def distance_format
     case discipline!.name
     when "swim"
       "#{(distance * 1000).to_i} м"
-    when "bicycle", "run"
-      "#{distance.to_i} км"
-    else
+    when "transit", "penalty"
       "-"
+    else
+      "#{distance.to_i} км"
     end
   end
 end

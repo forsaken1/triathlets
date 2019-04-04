@@ -6,4 +6,8 @@ class Team < Jennifer::Model::Base
     created_at: {type: Time, null: true},
     updated_at: {type: Time, null: true}
   )
+
+  def self.search(name)
+    all.find_by_sql "SELECT teams.* FROM teams WHERE teams.name ILIKE $1", ["%#{name}%"]
+  end
 end

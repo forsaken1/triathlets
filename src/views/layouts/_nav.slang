@@ -1,3 +1,2 @@
-a class="nav-item #{context.request.path == "/" ? "active" : ""}" href="/" = "Мультиспорт Приморского края"
-a class="nav-item #{context.request.path == "/users" ? "active" : ""}" href="/users" = "Спортсмены"
-a class="nav-item #{context.request.path == "/about" ? "active" : ""}" href="/about" = "О сайте"
+- @main_menu.as(MainMenu).items.each do |path, name|
+  a class="nav-item #{context.request.path == path ? "active" : ""}" href=path = name

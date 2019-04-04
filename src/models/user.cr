@@ -14,4 +14,8 @@ class User < Jennifer::Model::Base
   def to_json(io : JSON::Builder)
     {id: id, name: name, year: year}
   end
+
+  def self.search(name)
+    all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1", ["%#{name}%"]
+  end
 end
