@@ -1,12 +1,12 @@
 version: 1.0
 shards:
   amber:
-    github: amber-crystal/amber
-    version: 0.10.0
+    github: amberframework/amber
+    version: 0.27.0
 
   amber_router:
     github: amberframework/amber-router
-    version: 0.2.0
+    version: 0.2.1
 
   callback:
     github: mosop/callback
@@ -22,11 +22,15 @@ shards:
 
   db:
     github: crystal-lang/crystal-db
-    version: 0.5.0
+    version: 0.5.1
 
   email:
     github: arcage/crystal-email
-    version: 0.3.0
+    version: 0.3.3
+
+  exception_page:
+    github: crystal-loot/exception_page
+    version: 0.1.2
 
   garnet_spec:
     github: amberframework/garnet-spec
@@ -46,7 +50,7 @@ shards:
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: 0.6.2
+    version: 0.7.1
 
   kilt:
     github: jeromegn/kilt
@@ -62,7 +66,7 @@ shards:
 
   mysql:
     github: crystal-lang/crystal-mysql
-    version: 0.5.0
+    version: 0.5.1
 
   optarg:
     github: mosop/optarg
@@ -78,7 +82,7 @@ shards:
 
   quartz_mailer:
     github: amberframework/quartz-mailer
-    version: 0.5.2
+    version: 0.5.3
 
   redis:
     github: stefanwille/crystal-redis
@@ -86,7 +90,7 @@ shards:
 
   sam:
     github: imdrasil/sam.cr
-    version: 0.2.4
+    version: 0.3.0
 
   selenium:
     github: ysbaddaden/selenium-webdriver-crystal
@@ -110,5 +114,5 @@ shards:
 
   teeplate:
     github: mosop/teeplate
-    version: 0.6.1
+    version: 0.7.0
 
