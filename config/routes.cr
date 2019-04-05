@@ -29,14 +29,15 @@ Amber::Server.configure do |app|
     get "/teams/:id", TeamsController, :show
   end
 
+  routes :web, "/admin" do
+    get "/", Admin::DashboardController, :index
+    resources "/races", Admin::RacesController, only: [:index, :show, :create, :update, :destroy]
+    resources "/resources", Admin::ResourcesController, only: [:index, :show, :create, :update, :destroy]
+  end
+
   routes :static do
     # Each route is defined as follow
     # verb resource : String, controller : Symbol, action : Symbol
     get "/*", Amber::Controller::Static, :index
-  end
-
-  routes :web, "/admin" do
-    get "/", Admin::DashboardController, :index
-    resources "/resources", Admin::ResourcesController, only: [:index, :show, :create, :update, :destroy]
   end
 end

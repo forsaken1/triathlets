@@ -3,7 +3,7 @@ module Admin
     LAYOUT = "admin.slang"
 
     def index
-      render "src/views/admin/dashboard/index.slang"
+      render "admin/dashboard/index.slang"
     end
   end
 end

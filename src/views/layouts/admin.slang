@@ -14,7 +14,7 @@ html
     div.masthead
       div.container
         nav.nav
-          == render_template "src/views/admin/layouts/_nav.slang"
+          == render_template "admin/layouts/_nav.slang"
     div.container.wide
       div.row
       - flash.each do |key, value|

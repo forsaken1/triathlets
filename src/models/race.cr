@@ -9,6 +9,12 @@ class Race < Jennifer::Model::Base
     updated_at: {type: Time, null: true}
   )
 
+  JSON.mapping(
+    id: Int32?,
+    title: String,
+    date: String
+  )
+
   has_many :results, Result
   has_many :race_disciplines, RaceDiscipline, {order(position: :asc)}
 
