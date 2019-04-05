@@ -1,4 +1,4 @@
-h2 = results_table.race.title
+h1 = results_table.race.title
 
 .container.best
   .row

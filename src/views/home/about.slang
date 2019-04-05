@@ -1,4 +1,4 @@
-h2 = "О проекте"
+h1 = "О проекте"
 
 p
   a href="http://krylov-alexey.ru" target="_blank" = "Разработка и поддержка"
