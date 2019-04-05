@@ -1,4 +1,4 @@
-h2 = user.name
+h1 = user.name
 
 h4 = "Гонки"
 
