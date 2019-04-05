@@ -8,11 +8,7 @@ class Team < Jennifer::Model::Base
   )
 
   def self.search(name)
-    all.find_by_sql "SELECT teams.*, COUNT(users.*) as count FROM teams, LATERAL(SELECT DISTINCT results.user_id FROM results WHERE results.team_id = teams.id) users
+    all.find_records_by_sql "SELECT teams.*, COUNT(users.*) as count FROM teams, LATERAL(SELECT DISTINCT results.user_id FROM results WHERE results.team_id = teams.id) users
     WHERE teams.name ILIKE $1 AND teams.name != 'Лично' GROUP BY teams.id", ["%#{name}%"]
-  end
-
-  def count
-    attribute "count", false
   end
 end
