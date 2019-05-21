@@ -26,4 +26,10 @@ module RouteHelpers
   def teams_path
     "/teams"
   end
+
+  # admin panel routes
+
+  def admin_race_path(race)
+    "/admin/races/#{race.id}"
+  end
 end

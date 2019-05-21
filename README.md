@@ -29,6 +29,12 @@ or
 amber w
 ```
 
+npm watcher
+
+```
+npm start
+```
+
 run in production:
 
 ```

@@ -1,0 +1,13 @@
+.result {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  margin-bottom: 3px;
+}
+
+.result .result-field {
+  padding: 10px;
+  flex-basis: 15%;
+}

@@ -6,4 +6,11 @@ class Group < Jennifer::Model::Base
     created_at: {type: Time, null: true},
     updated_at: {type: Time, null: true}
   )
+
+  def as_json
+    {
+      id:   id,
+      name: name,
+    }
+  end
 end

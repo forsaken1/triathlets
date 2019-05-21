@@ -11,11 +11,16 @@ class User < Jennifer::Model::Base
 
   has_many :races, Race
 
-  def to_json(io : JSON::Builder)
-    {id: id, name: name, year: year}
-  end
-
   def self.search(name)
     all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1", ["%#{name}%"]
+  end
+
+  def as_json
+    {
+      id:            id,
+      name:          name,
+      qualification: qualification,
+      year:          year,
+    }
   end
 end
