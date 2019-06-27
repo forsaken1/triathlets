@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Result from "./Result.js"
+import Results from "./Results.js"
 
 const RESULTS_API = "/admin/results.json?race_id="
 
@@ -23,7 +23,7 @@ class Race extends Component {
   render() {
     return (
       <div>
-        {this.state.results.map(result => <Result data={result} key={result.id} />)}
+        {this.state.results.map(result => <Results id={result.id} user={result.user} city={result.city} team={result.team} time={result.time} key={result.id} />)}
       </div>
     );
   }
