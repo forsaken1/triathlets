@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 import Results from "./Results.js"
 import * as Route from '../lib/routes.js'
 
@@ -26,6 +27,10 @@ class Race extends Component {
       </div>
     );
   }
+}
+
+Race.propTypes = {
+  id: PropTypes.string.isRequired,
 }
 
 export default Race;

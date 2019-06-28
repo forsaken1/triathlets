@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 class EditField extends Component {
   constructor(props) {
@@ -31,6 +32,10 @@ class EditField extends Component {
       </div>
     )
   }
+}
+
+EditField.propTypes = {
+  val: PropTypes.string
 }
 
 export default EditField;
