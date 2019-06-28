@@ -10,4 +10,9 @@
 .result .result-field {
   padding: 10px;
   flex-basis: 15%;
+  display: flex;
+}
+
+.result .result-id {
+  flex-basis: 3%;
 }

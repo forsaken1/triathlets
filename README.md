@@ -19,8 +19,8 @@ crystal db/seeds.cr
 
 To run the demo:
 ```
-crystal build src/triathlets.cr
-./triathlets
+crystal build src/triathlets.cr -o bin/triathlets --release --stats
+bin/triathlets
 ```
 
 or

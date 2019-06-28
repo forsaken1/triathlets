@@ -20,4 +20,8 @@ class Race < Jennifer::Model::Base
 
   scope :ordered { order date: "asc" }
   scope :ordered_by_date { order({"TO_TIMESTAMP(races.date, 'DD.MM.YYYY')" => "DESC"}) }
+
+  def self.by_user_id(user_id)
+    all.find_by_sql "SELECT races.* FROM races JOIN results ON results.race_id = races.id WHERE results.user_id = $1 ORDER BY TO_TIMESTAMP(results.time, 'HH24.MI.SS') ASC", [user_id]
+  end
 end

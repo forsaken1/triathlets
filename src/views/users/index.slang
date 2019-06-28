@@ -1,4 +1,4 @@
-h2 = "Спортсмены"
+h1 = "Спортсмены"
 
 form.search-form.form-inline action=users_path method="GET"
   input.form-control placeholder="Введите имя" value=name name="name"

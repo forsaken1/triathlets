@@ -9,6 +9,7 @@ class EditField extends Component {
       editMode: false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleClick(event) {
@@ -16,11 +17,16 @@ class EditField extends Component {
     this.setState({editMode: true});
   }
 
+  handleSubmit(event) {
+    event.preventDefault();
+    this.setState({editMode: false});
+  }
+
   render() {
     return (
-      <div className="result-field city-field" onClick={this.handleClick} >
+      <div className="result-field" onClick={this.handleClick} >
         {this.state.editMode
-          ? <><input value={this.state.val} /><button>Save</button></>
+          ? <><input value={this.state.val} /><button onClick={this.handleSubmit}>Save</button></>
           : this.state.val}
       </div>
     )

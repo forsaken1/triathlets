@@ -9,14 +9,7 @@ module RouteHelpers
   end
 
   def race_path(race, **attributes)
-    joined_attrs = unless attributes.empty?
-      "?" + attributes.map do |key, value|
-        "#{key}=#{value}" unless value.nil? || value.blank?
-      end.compact.join("&")
-    else
-      ""
-    end
-    "/races/#{race.id}#{joined_attrs}"
+    "/races/#{race.id}#{join_attributes(attributes)}"
   end
 
   def team_path(team)
@@ -31,5 +24,15 @@ module RouteHelpers
 
   def admin_race_path(race)
     "/admin/races/#{race.id}"
+  end
+
+  private def join_attributes(attributes)
+    unless attributes.empty?
+      "?" + attributes.map do |key, value|
+        "#{key}=#{value}" unless value.nil? || value.blank?
+      end.compact.join("&")
+    else
+      ""
+    end
   end
 end

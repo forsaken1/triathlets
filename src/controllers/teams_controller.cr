@@ -6,6 +6,7 @@ class TeamsController < ApplicationController
 
   def show
     team = Team.find! params["id"]
+    users = User.by_team_id team.id
     render("show.slang")
   end
 

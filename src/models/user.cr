@@ -12,7 +12,11 @@ class User < Jennifer::Model::Base
   has_many :races, Race
 
   def self.search(name)
-    all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1", ["%#{name}%"]
+    all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1 ORDER BY users.name", ["%#{name}%"]
+  end
+
+  def self.by_team_id(team_id)
+    all.find_by_sql "SELECT users.* FROM users JOIN results ON results.user_id = users.id WHERE results.team_id = $1 GROUP BY users.id", [team_id]
   end
 
   def as_json
