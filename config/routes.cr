@@ -33,8 +33,9 @@ Amber::Server.configure do |app|
     get "/", Admin::DashboardController, :index
     resources "/races", Admin::RacesController, only: [:index, :show, :create, :update, :destroy]
     resources "/results", Admin::ResultsController, only: [:index, :show, :create, :update, :destroy]
-    resources "/resources", Admin::ResourcesController, only: [:index, :show, :create, :update, :destroy]
     resources "/users", Admin::UsersController, only: [:index]
+    resources "/teams", Admin::TeamsController, only: [:index]
+    resources "/cities", Admin::CitiesController, only: [:index]
   end
 
   routes :static do

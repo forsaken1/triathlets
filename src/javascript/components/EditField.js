@@ -6,38 +6,27 @@ class EditField extends Component {
     super(props);
 
     this.state = {
-      val: props.val,
-      editMode: false
+      val: props.val
     };
-    this.handleClick = this.handleClick.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleClick(event) {
-    event.preventDefault();
-    this.setState({editMode: true});
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-    this.setState({editMode: false});
   }
 
   render() {
-    const {val, editMode} = this.state;
+    const { val } = this.state;
+    const { editMode } = this.props;
 
     return (
       <div className="result-attribute">
         {editMode
-          ? <><input className="result-input" defaultValue={val} /><button className="result-button-save" onClick={this.handleSubmit}>Save</button></>
-          : <div onClick={this.handleClick} className="result-text">{val}</div>}
+          ? <input className="result-input" defaultValue={val} />
+          : <div className="result-text">{val}</div>}
       </div>
     )
   }
 }
 
 EditField.propTypes = {
-  val: PropTypes.string
+  val: PropTypes.string,
+  editMode: PropTypes.bool.isRequired
 }
 
 export default EditField;

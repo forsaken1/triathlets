@@ -7,39 +7,33 @@ class EditSelect extends Component {
     super(props);
 
     this.state = {
-      currentOption: props.currentOption,
-      editMode: false
+      currentOption: props.currentOption
     };
-    this.handleClick = this.handleClick.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  handleClick(event) {
-    event.preventDefault();
-    this.setState({editMode: true});
-  }
-
   handleChange(option) {
-    this.setState({editMode: false, currentOption: option});
+    this.setState({currentOption: option});
   }
 
   render() {
-    const {currentOption, editMode} = this.state;
-    const {options} = this.props;
+    const { currentOption } = this.state;
+    const { options, editMode } = this.props;
 
     return (
       <div className="result-attribute">
         {editMode
           ? <Select value={currentOption} options={options} onChange={this.handleChange} />
-          : <div onClick={this.handleClick} className="result-text">{currentOption.label}</div>}
+          : <div className="result-text">{currentOption.label}</div>}
       </div>
     )
   }
 }
 
 EditSelect.propTypes = {
-  // currentOption: PropTypes.string,
-  options: PropTypes.array
+  currentOption: PropTypes.object,
+  options: PropTypes.array,
+  editMode: PropTypes.bool.isRequired
 }
 
 export default EditSelect;
