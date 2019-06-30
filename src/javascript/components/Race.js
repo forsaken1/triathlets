@@ -1,29 +1,47 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
-import Results from "./Results.js"
-import * as Route from '../lib/routes.js'
+import Results from "./Results.js";
+import * as Route from '../lib/routes.js';
 
 class Race extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      id: props.id,
-      data: null,
-      results: []
+      raceResults: [],
+      usersList: []
     };
   }
 
-  componentDidMount() {
-    fetch(Route.results_path(this.props.id))
+  getRaceResult() {
+    fetch(Route.resultsPath(this.props.id))
       .then(response => response.json())
-      .then(data => this.setState({results: data}));
+      .then(data => this.setState({raceResults: data}));
+  }
+
+  getUsers() {
+    fetch(Route.usersPath(this.props.id))
+      .then(response => response.json())
+      .then(data => this.setState({usersList: data}));
+  }
+
+  componentDidMount() {
+    this.getRaceResult();
+    this.getUsers();
   }
 
   render() {
+    const {usersList, raceResults} = this.state;
+
     return (
       <div>
-        {this.state.results.map(result => <Results id={result.id} userName={result.user.name} cityName={result.city.name} teamName={result.team.name} time={result.time} key={result.id} />)}
+        {raceResults.map(result => <Results id={result.id}
+                                            userData={result.user}
+                                            usersList={usersList}
+                                            cityName={result.city.name}
+                                            teamName={result.team.name}
+                                            time={result.time}
+                                            key={result.id} />)}
       </div>
     );
   }

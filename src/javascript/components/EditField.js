@@ -24,11 +24,13 @@ class EditField extends Component {
   }
 
   render() {
+    const {val, editMode} = this.state;
+
     return (
-      <div className="result-field" onClick={this.handleClick} >
-        {this.state.editMode
-          ? <><input value={this.state.val} /><button onClick={this.handleSubmit}>Save</button></>
-          : this.state.val}
+      <div className="result-attribute">
+        {editMode
+          ? <><input className="result-input" defaultValue={val} /><button className="result-button-save" onClick={this.handleSubmit}>Save</button></>
+          : <div onClick={this.handleClick} className="result-text">{val}</div>}
       </div>
     )
   }

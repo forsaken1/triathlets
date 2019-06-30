@@ -23,5 +23,15 @@
         "react"
     ],
     "rules": {
+        "indent": [2, 2, { "SwitchCase": 1 }],
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        ]
     }
 }

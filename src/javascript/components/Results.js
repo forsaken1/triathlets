@@ -1,19 +1,25 @@
 import React, { Component } from "react";
 import PropTypes from 'prop-types';
 import EditField from "./EditField.js";
+import EditSelect from "./EditSelect.js";
+import { listToSelectOptions } from '../lib/func.js';
 
 import "../styles/Results.css"
 
 class Results extends Component {
   render() {
-    const {userName, teamName, cityName, id, time} = this.props;
+    const {userData, usersList, teamName, cityName, id, time} = this.props;
+    const userOptions = listToSelectOptions(usersList);
+    const currentUserOption = { value: userData.id, label: userData.name };
+    const currentTeamOption = { label: teamName };
+    const currentCityOption = { label: cityName };
 
     return (
       <div className="result">
-        <div className="result-field result-id">{id}</div>
-        <EditField val={userName} />
-        <EditField val={teamName} />
-        <EditField val={cityName} />
+        <div className="result-attribute result-id">{id}</div>
+        <EditSelect options={userOptions} currentOption={currentUserOption} />
+        <EditSelect currentOption={currentTeamOption} />
+        <EditSelect currentOption={currentCityOption} />
         <EditField val={time} />
       </div>
     );
@@ -22,9 +28,9 @@ class Results extends Component {
 
 Results.propTypes = {
   id: PropTypes.number,
-  userName: PropTypes.string,
-  teamName: PropTypes.string,
-  cityName: PropTypes.string,
+  // user: PropTypes.string.isRequired,
+  teamName: PropTypes.string.isRequired,
+  cityName: PropTypes.string.isRequired,
   time: PropTypes.string
 };
 
