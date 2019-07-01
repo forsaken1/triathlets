@@ -1,31 +1,27 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types';
 import EditField from "./EditField.js";
 import EditSelect from "./EditSelect.js";
 import EditSwitcher from "./EditSwitcher.js";
 import { listToSelectOptions } from '../lib/func.js';
+import { toggleEditMode } from '../redux/actions.js'
 
 import "../styles/Results.scss";
 
 class Results extends Component {
   constructor(props) {
     super(props);
-
-    this.state = {
-      editMode: false
-    };
     this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick(event) {
     event.preventDefault();
-    const { editMode } = this.state;
-    this.setState({ editMode: !editMode });
+    this.props.toggleEditMode();
   }
 
   render() {
-    const { userData, usersList, teamData, teamsList, cityData, citiesList, id, time } = this.props;
-    const { editMode } = this.state;
+    const { editMode, userData, usersList, teamData, teamsList, cityData, citiesList, id, time } = this.props;
 
     const usersOptions = listToSelectOptions(usersList);
     const teamsOptions = listToSelectOptions(teamsList);
@@ -56,4 +52,10 @@ Results.propTypes = {
   time: PropTypes.string
 };
 
-export default Results;
+const mapStateToProps = ({ editMode }) => ({
+  editMode
+});
+
+const mapDispatchToProps = { toggleEditMode };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Results);
