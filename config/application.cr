@@ -5,6 +5,7 @@ require "amber"
 require "../src/models/**"
 require "../src/helpers/**"
 require "../src/controllers/application_controller"
+require "../src/controllers/admin/dashboard_controller"
 require "../src/controllers/**"
 
 # About Application.cr File

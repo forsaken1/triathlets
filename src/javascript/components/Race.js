@@ -8,40 +8,61 @@ class Race extends Component {
     super(props);
 
     this.state = {
-      raceResults: [],
-      usersList: []
+      resultsList: [],
+      usersList: [],
+      citiesList: [],
+      teamsList: []
     };
   }
 
   getRaceResult() {
     fetch(Route.resultsPath(this.props.id))
       .then(response => response.json())
-      .then(data => this.setState({raceResults: data}));
+      .then(data => this.setState({resultsList: data}));
   }
 
   getUsers() {
-    fetch(Route.usersPath(this.props.id))
+    fetch(Route.usersPath())
       .then(response => response.json())
       .then(data => this.setState({usersList: data}));
+  }
+
+  getTeams() {
+    fetch(Route.teamsPath())
+      .then(response => response.json())
+      .then(data => this.setState({teamsList: data}));
+  }
+
+  getCities() {
+    fetch(Route.citiesPath())
+      .then(response => response.json())
+      .then(data => this.setState({citiesList: data}));
   }
 
   componentDidMount() {
     this.getRaceResult();
     this.getUsers();
+    this.getTeams();
+    this.getCities();
   }
 
   render() {
-    const {usersList, raceResults} = this.state;
+    const {usersList, teamsList, citiesList, resultsList} = this.state;
 
     return (
       <div>
-        {raceResults.map(result => <Results id={result.id}
-                                            userData={result.user}
-                                            usersList={usersList}
-                                            cityName={result.city.name}
-                                            teamName={result.team.name}
-                                            time={result.time}
-                                            key={result.id} />)}
+        {resultsList.map(result => <Results id={result.id}
+                                        userData={result.user}
+                                        usersList={usersList}
+
+                                        cityData={result.city}
+                                        citiesList={citiesList}
+
+                                        teamData={result.team}
+                                        teamsList={teamsList}
+
+                                        time={result.time}
+                                        key={result.id} />)}
       </div>
     );
   }

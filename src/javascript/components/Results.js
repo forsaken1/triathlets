@@ -24,19 +24,23 @@ class Results extends Component {
   }
 
   render() {
-    const {userData, usersList, teamName, cityName, id, time} = this.props;
+    const { userData, usersList, teamData, teamsList, cityData, citiesList, id, time } = this.props;
     const { editMode } = this.state;
-    const userOptions = listToSelectOptions(usersList);
+
+    const usersOptions = listToSelectOptions(usersList);
+    const teamsOptions = listToSelectOptions(teamsList);
+    const citiesOptions = listToSelectOptions(citiesList);
+
     const currentUserOption = { value: userData.id, label: userData.name };
-    const currentTeamOption = { label: teamName };
-    const currentCityOption = { label: cityName };
+    const currentTeamOption = { value: teamData.id, label: teamData.name };
+    const currentCityOption = { value: cityData.id, label: cityData.name };
 
     return (
       <div className="result">
         <div className="result-attribute result-id">{id}</div>
-        <EditSelect options={userOptions} currentOption={currentUserOption} editMode={editMode} />
-        <EditSelect currentOption={currentTeamOption} editMode={editMode} />
-        <EditSelect currentOption={currentCityOption} editMode={editMode} />
+        <EditSelect options={usersOptions} currentOption={currentUserOption} editMode={editMode} />
+        <EditSelect options={teamsOptions} currentOption={currentTeamOption} editMode={editMode} />
+        <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={editMode} />
         <EditField val={time} editMode={editMode} />
         <EditSwitcher handler={this.handleClick} status={editMode} />
       </div>
@@ -46,9 +50,9 @@ class Results extends Component {
 
 Results.propTypes = {
   id: PropTypes.number,
-  // user: PropTypes.string.isRequired,
-  teamName: PropTypes.string.isRequired,
-  cityName: PropTypes.string.isRequired,
+  userData: PropTypes.object.isRequired,
+  teamData: PropTypes.object.isRequired,
+  cityData: PropTypes.object.isRequired,
   time: PropTypes.string
 };
 
