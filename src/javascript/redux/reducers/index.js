@@ -1,17 +1,43 @@
-import { ADD_RESULT, TOGGLE_EDIT_MODE } from "../actionTypes";
+import { ADD_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "../actionTypes";
 
 const initialState = {
-  results: [],
+  resultsList: [],
+  usersList: [],
+  teamsList: [],
+  citiesList: [],
   editMode: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case ADD_RESULT: {
-      const { id, user_id, city_id, team_id, time } = action.payload;
+    case FETCH_RESULTS: {
       return {
         ...state,
-        results: [...state.results, { id, user_id, city_id, team_id, time }]
+        resultsList: [...action.payload]
+      };
+    }
+    case FETCH_USERS: {
+      return {
+        ...state,
+        usersList: [...action.payload]
+      };
+    }
+    case FETCH_TEAMS: {
+      return {
+        ...state,
+        teamsList: [...action.payload]
+      };
+    }
+    case FETCH_CITIES: {
+      return {
+        ...state,
+        citiesList: [...action.payload]
+      };
+    }
+    case ADD_RESULT: {
+      return {
+        ...state,
+        resultsList: [...state.resultsList, action.payload]
       };
     }
     case TOGGLE_EDIT_MODE: {

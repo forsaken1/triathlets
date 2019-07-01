@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import EditField from "./EditField.js";
 import EditSelect from "./EditSelect.js";
 import EditSwitcher from "./EditSwitcher.js";
 import { listToSelectOptions } from '../lib/func.js';
-import { toggleEditMode } from '../redux/actions.js'
+import { toggleEditMode } from '../redux/actions.js';
 
 import "../styles/Results.scss";
 
