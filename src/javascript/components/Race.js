@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Results from "./Results.js";
 import AddResult from "./AddResult.js";
 import * as Route from '../lib/routes.js';
-import { addResult, fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js';
+import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js';
 
 class Race extends Component {
   componentDidMount() {
@@ -51,7 +51,6 @@ const mapStateToProps = ({ resultsList, usersList, teamsList, citiesList }) => (
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    addResult,
     fetchResults: (raceId) => {
       fetch(Route.resultsPath(raceId))
         .then(response => response.json())

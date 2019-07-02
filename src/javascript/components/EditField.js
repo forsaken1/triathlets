@@ -12,12 +12,12 @@ class EditField extends Component {
 
   render() {
     const { val } = this.state;
-    const { editMode } = this.props;
+    const { editMode, onChange } = this.props;
 
     return (
       <div className="result-attribute">
         {editMode
-          ? <input className="result-input" defaultValue={val} />
+          ? <input className="result-input" defaultValue={val} onChange={onChange} />
           : <div className="result-text">{val}</div>}
       </div>
     )
@@ -26,7 +26,8 @@ class EditField extends Component {
 
 EditField.propTypes = {
   val: PropTypes.string,
-  editMode: PropTypes.bool.isRequired
+  editMode: PropTypes.bool.isRequired,
+  onChange: PropTypes.func
 }
 
 export default EditField;

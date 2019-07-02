@@ -14,6 +14,7 @@ class EditSelect extends Component {
 
   handleChange(option) {
     this.setState({currentOption: option});
+    this.props.onChange(option.value);
   }
 
   render() {
@@ -33,7 +34,8 @@ class EditSelect extends Component {
 EditSelect.propTypes = {
   currentOption: PropTypes.object,
   options: PropTypes.array,
-  editMode: PropTypes.bool.isRequired
+  editMode: PropTypes.bool.isRequired,
+  onChange: PropTypes.func
 }
 
 export default EditSelect;
