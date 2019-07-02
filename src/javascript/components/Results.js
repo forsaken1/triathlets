@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import EditField from "./EditField.js";
+import EditTime from "./EditTime.js";
 import EditSelect from "./EditSelect.js";
 import EditSwitcher from "./EditSwitcher.js";
 import { listToSelectOptions } from '../lib/func.js';
@@ -37,7 +37,7 @@ class Results extends Component {
         <EditSelect options={usersOptions} currentOption={currentUserOption} editMode={editMode} />
         <EditSelect options={teamsOptions} currentOption={currentTeamOption} editMode={editMode} />
         <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={editMode} />
-        <EditField val={time} editMode={editMode} />
+        <EditTime val={time} editMode={editMode} />
         <EditSwitcher handler={this.handleClick} status={editMode} />
       </div>
     );

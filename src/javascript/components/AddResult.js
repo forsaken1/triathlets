@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import EditField from "./EditField.js";
+import EditTime from "./EditTime.js";
 import EditSelect from "./EditSelect.js";
 import { listToSelectOptions, findById } from '../lib/func.js';
 import { addResult, toggleEditMode } from '../redux/actions.js';
@@ -9,7 +9,7 @@ const defaultState = {
   userId: null,
   teamId: null,
   cityId: null,
-  time: null
+  time: '0:00:00'
 }
 
 class AddResult extends Component {
@@ -54,12 +54,13 @@ class AddResult extends Component {
     this.setState({ cityId: value });
   }
 
-  handleChangeTime(event) {
-    this.setState({ time: event.target.value })
+  handleChangeTime(value) {
+    this.setState({ time: value })
   }
 
   render() {
     const { usersList, teamsList, citiesList } = this.props;
+    const { userId, teamId, cityId, time } = this.state;
 
     const usersOptions = listToSelectOptions(usersList);
     const teamsOptions = listToSelectOptions(teamsList);
@@ -71,7 +72,7 @@ class AddResult extends Component {
         <EditSelect options={usersOptions} currentOption={{}} editMode={true} onChange={this.handleChangeUser} />
         <EditSelect options={teamsOptions} currentOption={{}} editMode={true} onChange={this.handleChangeTeam} />
         <EditSelect options={citiesOptions} currentOption={{}} editMode={true} onChange={this.handleChangeCity} />
-        <EditField val={''} editMode={true} onChange={this.handleChangeTime} />
+        <EditTime val={time} editMode={true} onChange={this.handleChangeTime} />
         <div><button onClick={this.handleClickAdd}>Add</button></div>
       </div>
     )
