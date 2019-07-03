@@ -10,6 +10,10 @@
     flex-basis: 20%;
     display: flex;
 
+    .rc-time-picker-input {
+      height: 100%;
+    }
+
     .result-input {
       width: 70px;
       height: 38px;
@@ -26,7 +30,19 @@
     }
   }
 
+  &--has-error {
+    .result-attribute {
+      &--has-error div {
+        border-color: red;
+      }
+    }
+  }
+
   .result-id {
     flex-basis: 3%;
+  }
+
+  .rc-time-picker-clear {
+    top: 7px;
   }
 }

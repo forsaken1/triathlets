@@ -8,26 +8,25 @@ class EditTime extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      val: props.val
-    };
     this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange(value) {
-    this.setState({ val: value.format(moment.HTML5_FMT.TIME_SECONDS) });
-    this.props.onChange(this.state.val);
+    const { onChange } = this.props
+
+    if(onChange) {
+      onChange(value ? value.format(moment.HTML5_FMT.TIME_SECONDS) : '0:00:00');
+    }
   }
 
   render() {
-    const { val } = this.state;
-    const { editMode } = this.props;
+    const { editMode, value } = this.props;
 
     return (
       <div className="result-attribute">
         {editMode
-          ? <TimePicker onChange={this.handleChange} defaultValue={moment(val, moment.HTML5_FMT.TIME_SECONDS)} />
-          : <div className="result-text">{val}</div>}
+          ? <TimePicker onChange={this.handleChange} defaultValue={moment(value, moment.HTML5_FMT.TIME_SECONDS)} />
+          : <div className="result-text">{value}</div>}
       </div>
     )
   }
@@ -36,7 +35,7 @@ class EditTime extends Component {
 EditTime.propTypes = {
   val: PropTypes.string,
   editMode: PropTypes.bool.isRequired,
-  onChange: PropTypes.func
+  onChange: PropTypes.func.isRequired
 }
 
 export default EditTime;

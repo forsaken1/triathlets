@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Results from "./Results.js";
+import Result from "./Result.js";
 import AddResult from "./AddResult.js";
 import * as Route from '../lib/routes.js';
 import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js';
@@ -21,7 +21,7 @@ class Race extends Component {
       <div>
         <AddResult usersList={usersList} citiesList={citiesList} teamsList={teamsList} />
 
-        {resultsList.map(result => <Results id={result.id}
+        {resultsList.map(result => <Result id={result.id}
                                         userData={result.user}
                                         usersList={usersList}
 

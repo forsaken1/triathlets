@@ -1,4 +1,4 @@
-import { ADD_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "./actionTypes";
+import { ADD_RESULT, UPDATE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "./actionTypes";
 import * as Route from '../lib/routes.js';
 
 export const fetchResults = payload => ({
@@ -23,6 +23,11 @@ export const fetchCities = payload => ({
 
 export const addResult = payload => ({
   type: ADD_RESULT,
+  payload: payload
+});
+
+export const updateResult = payload => ({
+  type: UPDATE_RESULT,
   payload: payload
 });
 

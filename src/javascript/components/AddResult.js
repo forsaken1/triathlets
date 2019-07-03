@@ -9,7 +9,8 @@ const defaultState = {
   userId: null,
   teamId: null,
   cityId: null,
-  time: '0:00:00'
+  time: '0:00:00',
+  hasError: false
 }
 
 class AddResult extends Component {
@@ -17,11 +18,11 @@ class AddResult extends Component {
     super(props);
 
     this.state = defaultState;
-    this.handleClickAdd = this.handleClickAdd.bind(this);
-    this.handleChangeUser = this.handleChangeUser.bind(this);
-    this.handleChangeTeam = this.handleChangeTeam.bind(this);
-    this.handleChangeCity = this.handleChangeCity.bind(this);
-    this.handleChangeTime = this.handleChangeTime.bind(this);
+    this.handleClickAdd = this.handleClickAdd.bind(this)
+    this.handleChangeUser = this.handleChangeUser.bind(this)
+    this.handleChangeTeam = this.handleChangeTeam.bind(this)
+    this.handleChangeCity = this.handleChangeCity.bind(this)
+    this.handleChangeTime = this.handleChangeTime.bind(this)
   }
 
   handleClickAdd(event) {
@@ -29,6 +30,11 @@ class AddResult extends Component {
 
     const { addResult, resultsList, usersList, teamsList, citiesList } = this.props;
     const { userId, teamId, cityId, time } = this.state;
+
+    if(userId == null || teamId == null || cityId == null) {
+      this.setState({ hasError: true })
+      return
+    }
 
     const payload = {
       id: Math.floor(Math.random() * 100000),
@@ -60,19 +66,25 @@ class AddResult extends Component {
 
   render() {
     const { usersList, teamsList, citiesList } = this.props;
-    const { userId, teamId, cityId, time } = this.state;
+    const { userId, teamId, cityId, time, hasError } = this.state;
 
     const usersOptions = listToSelectOptions(usersList);
     const teamsOptions = listToSelectOptions(teamsList);
     const citiesOptions = listToSelectOptions(citiesList);
 
+    const currentUserOption = userId ? usersOptions.find(item => item.value == userId) : {}
+    const currentTeamOption = teamId ? teamsOptions.find(item => item.value == teamId) : {}
+    const currentCityOption = cityId ? citiesOptions.find(item => item.value == cityId) : {}
+
+    const blockClassName = hasError ? 'result result--has-error' : 'result'
+
     return (
-      <div className="result">
-        <div className="result-attribute result-id"></div>
-        <EditSelect options={usersOptions} currentOption={{}} editMode={true} onChange={this.handleChangeUser} />
-        <EditSelect options={teamsOptions} currentOption={{}} editMode={true} onChange={this.handleChangeTeam} />
-        <EditSelect options={citiesOptions} currentOption={{}} editMode={true} onChange={this.handleChangeCity} />
-        <EditTime val={time} editMode={true} onChange={this.handleChangeTime} />
+      <div className={blockClassName}>
+        <div className="result-id"></div>
+        <EditSelect options={usersOptions} currentOption={currentUserOption} editMode={true} onChange={this.handleChangeUser} hasError={userId == null} />
+        <EditSelect options={teamsOptions} currentOption={currentTeamOption} editMode={true} onChange={this.handleChangeTeam} hasError={teamId == null} />
+        <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={true} onChange={this.handleChangeCity} hasError={cityId == null} />
+        <EditTime value={time} editMode={true} onChange={this.handleChangeTime} />
         <div><button onClick={this.handleClickAdd}>Add</button></div>
       </div>
     )
