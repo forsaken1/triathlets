@@ -5,7 +5,7 @@ const initialState = {
   usersList: [],
   teamsList: [],
   citiesList: [],
-  editMode: false
+  editableId: null
 };
 
 export default function(state = initialState, action) {
@@ -62,7 +62,7 @@ export default function(state = initialState, action) {
     case TOGGLE_EDIT_MODE: {
       return {
         ...state,
-        editMode: !state.editMode
+        editableId: state.editableId == action.payload.id ? null : action.payload.id
       };
     }
     default:

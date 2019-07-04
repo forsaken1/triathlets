@@ -30,7 +30,7 @@ class Result extends Component {
   handleSaveClick(event) {
     event.preventDefault();
 
-    const { toggleEditMode, editMode } = this.props
+    const { toggleEditMode, editMode, id } = this.props
 
     if(editMode) {
       const { usersList, teamsList, citiesList, updateResult } = this.props
@@ -45,7 +45,7 @@ class Result extends Component {
       updateResult(payload)
     }
 
-    toggleEditMode();
+    toggleEditMode(id);
   }
 
   handleDeleteClick(event, id) {
@@ -71,7 +71,7 @@ class Result extends Component {
   }
 
   render() {
-    const { editMode, userData, usersList, teamData, teamsList, cityData, citiesList, id } = this.props;
+    const { editableId, userData, usersList, teamData, teamsList, cityData, citiesList, id } = this.props;
     const { userId, teamId, cityId, time } = this.state;
 
     const usersOptions = listToSelectOptions(usersList);
@@ -86,6 +86,8 @@ class Result extends Component {
     const currentTeamOption = teamOption || {}
     const currentCityOption = cityOption || {}
 
+    const editMode = editableId == id
+
     return (
       <div className="result">
         <div className="result-attribute result-id">{id}</div>
@@ -94,7 +96,9 @@ class Result extends Component {
         <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={editMode} onChange={this.handleChangeCity} />
         <EditTime value={time} editMode={editMode} onChange={this.handleChangeTime} />
         <EditSwitcher handler={this.handleSaveClick} status={editMode} />
-        <button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button>
+        <div>
+          <button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button>
+        </div>  
       </div>
     );
   }
@@ -108,8 +112,8 @@ Result.propTypes = {
   time: PropTypes.string
 };
 
-const mapStateToProps = ({ editMode, resultsList, usersList, teamsList, citiesList }) => ({
-  editMode,
+const mapStateToProps = ({ editableId, resultsList, usersList, teamsList, citiesList }) => ({
+  editableId,
   resultsList,
   usersList,
   teamsList,

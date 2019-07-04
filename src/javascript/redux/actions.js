@@ -31,12 +31,12 @@ export const updateResult = payload => ({
   payload: payload
 });
 
-export const deleteResult = (id) => ({
+export const deleteResult = id => ({
   type: DELETE_RESULT,
   payload: { id }
 });
 
-export const toggleEditMode = () => ({
+export const toggleEditMode = id => ({
   type: TOGGLE_EDIT_MODE,
-  payload: {}
+  payload: { id }
 });
