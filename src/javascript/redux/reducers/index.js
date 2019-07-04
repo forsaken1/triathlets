@@ -1,4 +1,4 @@
-import { ADD_RESULT, UPDATE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "../actionTypes";
+import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "../actionTypes";
 
 const initialState = {
   resultsList: [],
@@ -51,6 +51,12 @@ export default function(state = initialState, action) {
         };
       } else {
         return state;
+      }
+    }
+    case DELETE_RESULT: {
+      return {
+        ...state,
+        resultsList: [...state.resultsList.filter(item => item.id != action.payload.id)]
       }
     }
     case TOGGLE_EDIT_MODE: {

@@ -5,7 +5,7 @@ import EditTime from "./EditTime.js";
 import EditSelect from "./EditSelect.js";
 import EditSwitcher from "./EditSwitcher.js";
 import { listToSelectOptions, findById } from '../lib/func.js';
-import { toggleEditMode, updateResult } from '../redux/actions.js';
+import { toggleEditMode, updateResult, deleteResult } from '../redux/actions.js';
 
 import "../styles/Results.scss";
 
@@ -48,6 +48,12 @@ class Result extends Component {
     toggleEditMode();
   }
 
+  handleDeleteClick(event, id) {
+    event.preventDefault();
+
+    this.props.deleteResult(id)
+  }
+
   handleChangeUser(value) {
     this.setState({ userId: value });
   }
@@ -88,6 +94,7 @@ class Result extends Component {
         <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={editMode} onChange={this.handleChangeCity} />
         <EditTime value={time} editMode={editMode} onChange={this.handleChangeTime} />
         <EditSwitcher handler={this.handleSaveClick} status={editMode} />
+        <button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button>
       </div>
     );
   }
@@ -109,6 +116,6 @@ const mapStateToProps = ({ editMode, resultsList, usersList, teamsList, citiesLi
   citiesList
 });
 
-const mapDispatchToProps = { toggleEditMode, updateResult };
+const mapDispatchToProps = { toggleEditMode, updateResult, deleteResult };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Result);
