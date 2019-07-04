@@ -25,7 +25,7 @@ class EditTime extends Component {
     return (
       <div className="result-attribute">
         {editMode
-          ? <TimePicker onChange={this.handleChange} defaultValue={moment(value, moment.HTML5_FMT.TIME_SECONDS)} />
+          ? <TimePicker onChange={this.handleChange} value={moment(value, moment.HTML5_FMT.TIME_SECONDS)} />
           : <div className="result-text">{value}</div>}
       </div>
     )

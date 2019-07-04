@@ -18,7 +18,7 @@ class Race extends Component {
     const { resultsList, usersList, teamsList, citiesList } = this.props;
 
     return (
-      <div>
+      <>
         <AddResult usersList={usersList} citiesList={citiesList} teamsList={teamsList} />
 
         {resultsList.map(result => <Result id={result.id}
@@ -33,7 +33,7 @@ class Race extends Component {
 
                                         time={result.time}
                                         key={result.id} />)}
-      </div>
+      </>
     );
   }
 }
