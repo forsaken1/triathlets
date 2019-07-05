@@ -90,14 +90,14 @@ class Result extends Component {
 
     return (
       <div className="result">
-        <div className="result-attribute result-id">{id}</div>
+        <div className="result-id">{id}</div>
         <EditSelect options={usersOptions} currentOption={currentUserOption} editMode={editMode} onChange={this.handleChangeUser} />
         <EditSelect options={teamsOptions} currentOption={currentTeamOption} editMode={editMode} onChange={this.handleChangeTeam} />
         <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode={editMode} onChange={this.handleChangeCity} />
         <EditTime value={time} editMode={editMode} onChange={this.handleChangeTime} />
-        <EditSwitcher handler={this.handleSaveClick} status={editMode} />
-        <div>
-          <button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button>
+        <div className="result-actions">
+          <EditSwitcher handler={this.handleSaveClick} status={editMode} />
+          <div><button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button></div>
         </div>  
       </div>
     );

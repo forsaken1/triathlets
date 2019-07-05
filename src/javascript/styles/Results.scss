@@ -38,8 +38,14 @@
     }
   }
 
-  .result-id {
+  &-id {
     flex-basis: 3%;
+  }
+
+  &-actions {
+    flex-basis: 12%;
+    display: flex;
+    justify-content: space-between;
   }
 
   .rc-time-picker-clear {

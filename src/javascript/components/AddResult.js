@@ -85,7 +85,9 @@ class AddResult extends Component {
         <EditSelect options={teamsOptions} currentOption={currentTeamOption} editMode onChange={this.handleChangeTeam} hasError={teamId == null} />
         <EditSelect options={citiesOptions} currentOption={currentCityOption} editMode onChange={this.handleChangeCity} hasError={cityId == null} />
         <EditTime value={time} editMode onChange={this.handleChangeTime} />
-        <div><button onClick={this.handleClickAdd}>Add</button></div>
+        <div className="result-actions">
+          <div><button onClick={this.handleClickAdd}>Add</button></div>
+        </div>
       </div>
     )
   }
