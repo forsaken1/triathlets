@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from 'react-redux';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Race from "./components/Race.js";
 import store from './redux/store'
 
@@ -11,7 +12,9 @@ if(reactRaceEntrypoint) {
 
   ReactDOM.render(
     <Provider store={store}>
-      <Race id={id} />
+      <Router>
+        <Route path="/" render={(props) => <Race {...props} id={id} />} />
+      </Router>
     </Provider>,
     reactRaceEntrypoint
   )
