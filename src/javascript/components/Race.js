@@ -7,18 +7,37 @@ import * as Route from '../lib/routes.js';
 import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js';
 
 class Race extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      currentRace: null
+    }
+  }
+
+  fetchRace(id) {
+    fetch(Route.racePath(id))
+      .then(response => response.json())
+      .then(data => this.setState({ currentRace: data }))
+  }
+
   componentDidMount() {
-    this.props.fetchResults(this.props.id);
-    this.props.fetchCities();
-    this.props.fetchUsers();
-    this.props.fetchTeams();
+    const { match: { params } } = this.props
+
+    this.fetchRace(params.id)
+    this.props.fetchResults(params.id)
+    this.props.fetchCities()
+    this.props.fetchUsers()
+    this.props.fetchTeams()
   }
 
   render() {
-    const { resultsList, usersList, teamsList, citiesList } = this.props;
+    const { racesList, resultsList, usersList, teamsList, citiesList } = this.props
+    const { currentRace } = this.state
 
     return (
       <>
+        <h1>{currentRace && currentRace.title}</h1>
         <AddResult usersList={usersList} citiesList={citiesList} teamsList={teamsList} />
 
         {resultsList.map(result => <Result id={result.id}
@@ -38,11 +57,8 @@ class Race extends Component {
   }
 }
 
-Race.propTypes = {
-  id: PropTypes.string.isRequired,
-}
-
-const mapStateToProps = ({ resultsList, usersList, teamsList, citiesList }) => ({
+const mapStateToProps = ({ racesList, resultsList, usersList, teamsList, citiesList }) => ({
+  racesList,
   resultsList,
   usersList,
   teamsList,

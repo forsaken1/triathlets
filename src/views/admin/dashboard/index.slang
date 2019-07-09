@@ -1,1 +1,1 @@
-h1 = "Панель управления"
+#react-admin-dashboard-entrypoint

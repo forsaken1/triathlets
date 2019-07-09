@@ -1,5 +1,5 @@
-module Admin
-  class UsersController < DashboardController
+module Api
+  class UsersController < ApplicationController
     def index
       users = User.all
 

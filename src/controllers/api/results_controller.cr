@@ -1,7 +1,7 @@
-module Admin
-  class ResultsController < DashboardController
+module Api
+  class ResultsController < ApplicationController
     def index
-      results = Result.all.by_race_id race_id
+      results = Result.all.includes(:city, :user, :team, :group).by_race_id race_id
 
       respond_with do
         json results.to_a.map(&.as_json).to_json
