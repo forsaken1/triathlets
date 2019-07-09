@@ -15,11 +15,8 @@ html
       div.container
         nav.nav
           == render_template "admin/layouts/_nav.slang"
+          
     div.container.wide
-      div.row
-      - flash.each do |key, value|
-        div class="alert alert-#{ key }"
-          p = flash[key]
       div.row
         div.col-sm-12.main
           == content

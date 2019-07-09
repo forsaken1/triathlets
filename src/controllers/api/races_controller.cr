@@ -1,14 +1,15 @@
-module Admin
-  class RacesController < DashboardController
+module Api
+  class RacesController < ApplicationController
     def index
       races = Race.all.to_a
-      render("index.slang")
+      respond_with do
+        json races.to_json
+      end
     end
 
     def show
       race = Race.find! params["id"]
       respond_with do
-        html render("show.slang")
         json race.to_json
       end
     end

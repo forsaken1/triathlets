@@ -1,5 +1,5 @@
-module Admin
-  class TeamsController < DashboardController
+module Api
+  class TeamsController < ApplicationController
     def index
       teams = Team.all
 

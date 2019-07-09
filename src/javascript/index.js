@@ -1,21 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import { Provider } from 'react-redux';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import Race from "./components/Race.js";
+import React from "react"
+import ReactDOM from "react-dom"
+import { Provider } from 'react-redux'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import Race from "./components/Race"
+import Races from "./components/Races"
+import Users from "./components/Users"
 import store from './redux/store'
 
-const reactRaceEntrypoint = document.getElementById("react-race-entrypoint");
+const reactAdminDashboardEntrypoint = document.getElementById("react-admin-dashboard-entrypoint")
 
-if(reactRaceEntrypoint) {
-  const id = reactRaceEntrypoint.getAttribute('race-id');
-
+if(reactAdminDashboardEntrypoint) {
   ReactDOM.render(
     <Provider store={store}>
       <Router>
-        <Route path="/" render={(props) => <Race {...props} id={id} />} />
+        <Route path="/admin" exact component={Races} />
+        <Route path="/admin/users" component={Users} />
+        <Route path="/admin/races/:id" render={(props) => <Race {...props} />} />
       </Router>
     </Provider>,
-    reactRaceEntrypoint
+    reactAdminDashboardEntrypoint
   )
 }

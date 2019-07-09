@@ -1,6 +1,8 @@
-import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES } from "../actionTypes";
+import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES,
+ADD_USER, FETCH_RACES } from "../actionTypes";
 
 const initialState = {
+  racesList: [],
   resultsList: [],
   usersList: [],
   teamsList: [],
@@ -10,6 +12,12 @@ const initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case FETCH_RACES: {
+      return {
+        ...state,
+        racesList: [...action.payload]
+      }
+    }
     case FETCH_RESULTS: {
       return {
         ...state,
@@ -64,6 +72,12 @@ export default function(state = initialState, action) {
         ...state,
         editableId: state.editableId == action.payload.id ? null : action.payload.id
       };
+    }
+    case ADD_USER: {
+      return {
+        ...state,
+        usersList: [...state.usersList, action.payload]
+      }
     }
     default:
       return state;

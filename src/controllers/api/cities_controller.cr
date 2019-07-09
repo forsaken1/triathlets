@@ -1,5 +1,5 @@
-module Admin
-  class CitiesController < DashboardController
+module Api
+  class CitiesController < ApplicationController
     def index
       cities = City.all
 
