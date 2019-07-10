@@ -40,8 +40,10 @@
     "webpack-cli": "^3.3.0"
   },
   "dependencies": {
+    "bootstrap": "^4.3.1",
     "rc-time-picker": "^3.7.1",
     "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
     "react-dom": "^16.8.6",
     "react-redux": "^7.1.0",
     "react-router-dom": "^5.0.1",
