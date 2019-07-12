@@ -6036,7 +6036,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /*!***************************************************************!*\
   !*** ./node_modules/react-router-dom/esm/react-router-dom.js ***!
   \***************************************************************/
-/*! exports provided: BrowserRouter, HashRouter, Link, NavLink, MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext */
+/*! exports provided: MemoryRouter, Prompt, Redirect, Route, Router, StaticRouter, Switch, generatePath, matchPath, withRouter, __RouterContext, BrowserRouter, HashRouter, Link, NavLink */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6567,6 +6567,30 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 
 /***/ }),
 
+/***/ "./src/javascript/redux/reducers/cities.js":
+/*!*************************************************!*\
+  !*** ./src/javascript/redux/reducers/cities.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_CITIES\"]:\n      {\n        return _toConsumableArray(action.payload);\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/cities.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/redux/reducers/editable.js":
+/*!***************************************************!*\
+  !*** ./src/javascript/redux/reducers/editable.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"TOGGLE_EDIT_MODE\"]:\n      {\n        return state == action.payload.id ? null : action.payload.id;\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/editable.js?");
+
+/***/ }),
+
 /***/ "./src/javascript/redux/reducers/index.js":
 /*!************************************************!*\
   !*** ./src/javascript/redux/reducers/index.js ***!
@@ -6575,7 +6599,55 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\nfunction _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }\n\nfunction _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }\n\n\nvar initialState = {\n  racesList: [],\n  resultsList: [],\n  usersList: [],\n  teamsList: [],\n  citiesList: [],\n  editableId: null\n};\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_RACES\"]:\n      {\n        return _objectSpread({}, state, {\n          racesList: _toConsumableArray(action.payload)\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_RESULTS\"]:\n      {\n        return _objectSpread({}, state, {\n          resultsList: _toConsumableArray(action.payload)\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_USERS\"]:\n      {\n        return _objectSpread({}, state, {\n          usersList: _toConsumableArray(action.payload)\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_TEAMS\"]:\n      {\n        return _objectSpread({}, state, {\n          teamsList: _toConsumableArray(action.payload)\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_CITIES\"]:\n      {\n        return _objectSpread({}, state, {\n          citiesList: _toConsumableArray(action.payload)\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"ADD_RESULT\"]:\n      {\n        return _objectSpread({}, state, {\n          resultsList: [].concat(_toConsumableArray(state.resultsList), [action.payload])\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_RESULT\"]:\n      {\n        var index = state.resultsList.findIndex(function (i) {\n          return i == action.payload.id;\n        });\n\n        if (index) {\n          state.resultsList[index] = action.payload;\n          return _objectSpread({}, state, {\n            resultsList: _toConsumableArray(state.resultsList)\n          });\n        } else {\n          return state;\n        }\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"DELETE_RESULT\"]:\n      {\n        return _objectSpread({}, state, {\n          resultsList: _toConsumableArray(state.resultsList.filter(function (item) {\n            return item.id != action.payload.id;\n          }))\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"TOGGLE_EDIT_MODE\"]:\n      {\n        return _objectSpread({}, state, {\n          editableId: state.editableId == action.payload.id ? null : action.payload.id\n        });\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"ADD_USER\"]:\n      {\n        return _objectSpread({}, state, {\n          usersList: [].concat(_toConsumableArray(state.usersList), [action.payload])\n        });\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ \"./node_modules/redux/es/redux.js\");\n/* harmony import */ var _results__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./results */ \"./src/javascript/redux/reducers/results.js\");\n/* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./users */ \"./src/javascript/redux/reducers/users.js\");\n/* harmony import */ var _teams__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./teams */ \"./src/javascript/redux/reducers/teams.js\");\n/* harmony import */ var _cities__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./cities */ \"./src/javascript/redux/reducers/cities.js\");\n/* harmony import */ var _races__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./races */ \"./src/javascript/redux/reducers/races.js\");\n/* harmony import */ var _editable__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editable */ \"./src/javascript/redux/reducers/editable.js\");\n\n\n\n\n\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (Object(redux__WEBPACK_IMPORTED_MODULE_0__[\"combineReducers\"])({\n  resultsList: _results__WEBPACK_IMPORTED_MODULE_1__[\"default\"],\n  usersList: _users__WEBPACK_IMPORTED_MODULE_2__[\"default\"],\n  teamsList: _teams__WEBPACK_IMPORTED_MODULE_3__[\"default\"],\n  citiesList: _cities__WEBPACK_IMPORTED_MODULE_4__[\"default\"],\n  racesList: _races__WEBPACK_IMPORTED_MODULE_5__[\"default\"],\n  editableId: _editable__WEBPACK_IMPORTED_MODULE_6__[\"default\"]\n}));\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/index.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/redux/reducers/races.js":
+/*!************************************************!*\
+  !*** ./src/javascript/redux/reducers/races.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_RACES\"]:\n      {\n        return _toConsumableArray(action.payload);\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/races.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/redux/reducers/results.js":
+/*!**************************************************!*\
+  !*** ./src/javascript/redux/reducers/results.js ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_RESULTS\"]:\n      {\n        return _toConsumableArray(action.payload);\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"ADD_RESULT\"]:\n      {\n        return [].concat(_toConsumableArray(state), [action.payload]);\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"UPDATE_RESULT\"]:\n      {\n        var index = state.findIndex(function (i) {\n          return i == action.payload.id;\n        });\n\n        if (index) {\n          state[index] = action.payload;\n          return _toConsumableArray(state);\n        } else {\n          return state;\n        }\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"DELETE_RESULT\"]:\n      {\n        return _toConsumableArray(state.filter(function (item) {\n          return item.id != action.payload.id;\n        }));\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/results.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/redux/reducers/teams.js":
+/*!************************************************!*\
+  !*** ./src/javascript/redux/reducers/teams.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_TEAMS\"]:\n      {\n        return _toConsumableArray(action.payload);\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/teams.js?");
+
+/***/ }),
+
+/***/ "./src/javascript/redux/reducers/users.js":
+/*!************************************************!*\
+  !*** ./src/javascript/redux/reducers/users.js ***!
+  \************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _actionTypes__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actionTypes */ \"./src/javascript/redux/actionTypes.js\");\nfunction _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }\n\nfunction _nonIterableSpread() { throw new TypeError(\"Invalid attempt to spread non-iterable instance\"); }\n\nfunction _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === \"[object Arguments]\") return Array.from(iter); }\n\nfunction _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }\n\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (function () {\n  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];\n  var action = arguments.length > 1 ? arguments[1] : undefined;\n\n  switch (action.type) {\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"FETCH_USERS\"]:\n      {\n        return _toConsumableArray(action.payload);\n      }\n\n    case _actionTypes__WEBPACK_IMPORTED_MODULE_0__[\"ADD_USER\"]:\n      {\n        return [].concat(_toConsumableArray(state), [action.payload]);\n      }\n\n    default:\n      return state;\n  }\n});\n\n//# sourceURL=webpack:///./src/javascript/redux/reducers/users.js?");
 
 /***/ }),
 
