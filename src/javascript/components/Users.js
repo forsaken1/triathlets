@@ -1,8 +1,15 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
-import { addUser } from '../redux/actions'
+import { addUser, fetchUsers } from '../redux/actions'
+import * as Route from '../lib/routes'
 
 class Users extends Component {
+  componentDidMount() {
+    const { fetchUsers } = this.props
+
+    fetchUsers()
+  }
+
   render() {
     const { usersList } = this.props
 
@@ -21,8 +28,15 @@ const mapStateToProps = ({ usersList }) => ({
   usersList
 })
 
-const mapDispatchToProps = {
-  addUser
+const mapDispatchToProps = (dispatch) => {
+  return {
+    addUser,
+    fetchUsers: () => {
+      fetch(Route.usersPath())
+        .then(response => response.json())
+        .then(data => dispatch(fetchUsers(data)))
+    },
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)
