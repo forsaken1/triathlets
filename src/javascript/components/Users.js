@@ -5,9 +5,9 @@ import * as Route from '../lib/routes'
 
 class Users extends Component {
   componentDidMount() {
-    const { fetchUsers } = this.props
+    const { dispatch, fetchUsers } = this.props
 
-    fetchUsers()
+    dispatch(fetchUsers())
   }
 
   render() {
@@ -30,12 +30,9 @@ const mapStateToProps = ({ usersList }) => ({
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    dispatch,
     addUser,
-    fetchUsers: () => {
-      fetch(Route.usersPath())
-        .then(response => response.json())
-        .then(data => dispatch(fetchUsers(data)))
-    },
+    fetchUsers
   }
 }
 
