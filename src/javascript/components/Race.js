@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import Result from "./Result.js";
-import AddResult from "./AddResult.js";
-import * as Route from '../lib/routes.js';
-import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js';
+import React, { Component } from "react"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import Result from "./Result.js"
+import AddResult from "./AddResult.js"
+import * as Route from '../lib/routes.js'
+import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js'
 
 class Race extends Component {
   constructor(props) {
@@ -22,13 +22,14 @@ class Race extends Component {
   }
 
   componentDidMount() {
-    const { match: { params } } = this.props
+    const { match: { params }, dispatch, fetchResults, fetchCities, fetchUsers, fetchTeams } = this.props
+
+    dispatch(fetchResults(params.id))
+    dispatch(fetchCities())
+    dispatch(fetchUsers())
+    dispatch(fetchTeams())
 
     this.fetchRace(params.id)
-    this.props.fetchResults(params.id)
-    this.props.fetchCities()
-    this.props.fetchUsers()
-    this.props.fetchTeams()
   }
 
   render() {
@@ -67,26 +68,11 @@ const mapStateToProps = ({ racesList, resultsList, usersList, teamsList, citiesL
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchResults: (raceId) => {
-      fetch(Route.resultsPath(raceId))
-        .then(response => response.json())
-        .then(data => dispatch(fetchResults(data)))
-    },
-    fetchCities: () => {
-      fetch(Route.citiesPath())
-        .then(response => response.json())
-        .then(data => dispatch(fetchCities(data)))
-    },
-    fetchUsers: () => {
-      fetch(Route.usersPath())
-        .then(response => response.json())
-        .then(data => dispatch(fetchUsers(data)))
-    },
-    fetchTeams: () => {
-      fetch(Route.teamsPath())
-        .then(response => response.json())
-        .then(data => dispatch(fetchTeams(data)))
-    }
+    dispatch,
+    fetchResults,
+    fetchCities,
+    fetchUsers,
+    fetchTeams
   }
 };
 

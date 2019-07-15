@@ -1,8 +1,8 @@
-import { FETCH_RACES } from '../actionTypes'
+import { FETCH_RACES_SUCCESS } from '../actionTypes'
 
 export default function(state = [], action) {
   switch (action.type) {
-    case FETCH_RACES: {
+    case FETCH_RACES_SUCCESS: {
       return [...action.payload]
     }
     default:

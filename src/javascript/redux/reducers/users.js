@@ -1,8 +1,8 @@
-import { FETCH_USERS, ADD_USER } from '../actionTypes'
+import { FETCH_USERS_SUCCESS, ADD_USER } from '../actionTypes'
 
 export default function(state = [], action) {
   switch (action.type) {
-    case FETCH_USERS: {
+    case FETCH_USERS_SUCCESS: {
       return [...action.payload]
     }
     case ADD_USER: {

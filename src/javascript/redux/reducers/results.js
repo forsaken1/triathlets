@@ -1,8 +1,8 @@
-import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, FETCH_RESULTS } from "../actionTypes";
+import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, FETCH_RESULTS_SUCCESS } from "../actionTypes";
 
 export default function(state = [], action) {
   switch (action.type) {
-    case FETCH_RESULTS: {
+    case FETCH_RESULTS_SUCCESS: {
       return [...action.payload]
     }
     case ADD_RESULT: {

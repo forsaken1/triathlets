@@ -1,33 +1,59 @@
 import { ADD_RESULT, UPDATE_RESULT, DELETE_RESULT, TOGGLE_EDIT_MODE, FETCH_RESULTS, FETCH_USERS, FETCH_TEAMS, FETCH_CITIES,
-ADD_USER, FETCH_RACES } from "./actionTypes";
+ADD_USER, FETCH_RACES, FETCH_RESULTS_SUCCESS, FETCH_CITIES_SUCCESS, FETCH_USERS_SUCCESS, FETCH_TEAMS_SUCCESS, FETCH_RACES_SUCCESS } from "./actionTypes";
 
-export const fetchRaces = payload => ({
-  type: FETCH_RACES,
+export const fetchRaces = () => ({
+  type: FETCH_RACES
+})
+
+export const fetchRacesSuccess = payload => ({
+  type: FETCH_RACES_SUCCESS,
   payload: payload
 })
 
-export const fetchResults = payload => ({
+export const fetchResults = (id) => ({
   type: FETCH_RESULTS,
+  payload: { id }
+});
+
+export const fetchResultsSuccess = payload => ({
+  type: FETCH_RESULTS_SUCCESS,
   payload: payload
 });
 
-export const fetchUsers = payload => ({
-  type: FETCH_USERS,
+export const fetchUsers = () => ({
+  type: FETCH_USERS
+})
+
+export const fetchUsersSuccess = payload => ({
+  type: FETCH_USERS_SUCCESS,
   payload: payload
 });
 
-export const fetchTeams = payload => ({
-  type: FETCH_TEAMS,
+export const fetchTeams = () => ({
+  type: FETCH_TEAMS
+})
+
+export const fetchTeamsSuccess = payload => ({
+  type: FETCH_TEAMS_SUCCESS,
   payload: payload
 });
 
-export const fetchCities = payload => ({
-  type: FETCH_CITIES,
+export const fetchCities = () => ({
+  type: FETCH_CITIES
+})
+
+export const fetchCitiesSuccess = payload => ({
+  type: FETCH_CITIES_SUCCESS,
   payload: payload
 });
 
 export const addResult = payload => ({
   type: ADD_RESULT,
+  payload: payload
+});
+
+export const addUser = payload => ({
+  type: ADD_USER,
   payload: payload
 });
 
@@ -44,9 +70,4 @@ export const deleteResult = id => ({
 export const toggleEditMode = id => ({
   type: TOGGLE_EDIT_MODE,
   payload: { id }
-});
-
-export const addUser = payload => ({
-  type: ADD_USER,
-  payload: payload
 });
