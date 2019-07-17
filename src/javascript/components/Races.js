@@ -6,9 +6,9 @@ import * as Route from '../lib/routes'
 
 class Races extends Component {
   componentDidMount() {
-    const { dispatch, fetchRaces } = this.props
+    const { fetchRaces } = this.props
 
-    dispatch(fetchRaces())
+    fetchRaces()
   }
 
   render() {
@@ -29,11 +29,6 @@ const mapStateToProps = ({ racesList }) => ({
   racesList
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    fetchRaces
-  }
-}
+const mapDispatchToProps = { fetchRaces }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Races)

@@ -22,24 +22,24 @@ class Race extends Component {
   }
 
   componentDidMount() {
-    const { match: { params }, dispatch, fetchResults, fetchCities, fetchUsers, fetchTeams } = this.props
+    const { match: { params }, fetchResults, fetchCities, fetchUsers, fetchTeams } = this.props
 
-    dispatch(fetchResults(params.id))
-    dispatch(fetchCities())
-    dispatch(fetchUsers())
-    dispatch(fetchTeams())
+    fetchResults(params.id)
+    fetchCities()
+    fetchUsers()
+    fetchTeams()
 
     this.fetchRace(params.id)
   }
 
   render() {
-    const { racesList, resultsList, usersList, teamsList, citiesList } = this.props
+    const { racesList, resultsList, usersList, teamsList, citiesList, match: { params } } = this.props
     const { currentRace } = this.state
 
     return (
       <>
         <h1>{currentRace && currentRace.title}</h1>
-        <AddResult usersList={usersList} citiesList={citiesList} teamsList={teamsList} />
+        <AddResult usersList={usersList} citiesList={citiesList} teamsList={teamsList} raceId={params.id} />
 
         {resultsList.map(result => <Result id={result.id}
                                         userData={result.user}
@@ -64,16 +64,13 @@ const mapStateToProps = ({ racesList, resultsList, usersList, teamsList, citiesL
   usersList,
   teamsList,
   citiesList
-});
+})
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    fetchResults,
-    fetchCities,
-    fetchUsers,
-    fetchTeams
-  }
-};
+const mapDispatchToProps = {
+  fetchResults,
+  fetchCities,
+  fetchUsers,
+  fetchTeams
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Race);
+export default connect(mapStateToProps, mapDispatchToProps)(Race)

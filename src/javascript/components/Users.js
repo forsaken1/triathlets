@@ -5,9 +5,9 @@ import * as Route from '../lib/routes'
 
 class Users extends Component {
   componentDidMount() {
-    const { dispatch, fetchUsers } = this.props
+    const { fetchUsers } = this.props
 
-    dispatch(fetchUsers())
+    fetchUsers()
   }
 
   render() {
@@ -28,12 +28,9 @@ const mapStateToProps = ({ usersList }) => ({
   usersList
 })
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatch,
-    addUser,
-    fetchUsers
-  }
+const mapDispatchToProps = {
+  addUser,
+  fetchUsers
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)

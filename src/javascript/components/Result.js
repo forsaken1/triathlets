@@ -1,17 +1,17 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import EditTime from "./EditTime.js";
-import EditSelect from "./EditSelect.js";
-import EditSwitcher from "./EditSwitcher.js";
-import { listToSelectOptions, findById } from '../lib/func.js';
-import { toggleEditMode, updateResult, deleteResult } from '../redux/actions.js';
+import React, { Component } from "react"
+import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
+import EditTime from "./EditTime.js"
+import EditSelect from "./EditSelect.js"
+import EditSwitcher from "./EditSwitcher.js"
+import { listToSelectOptions, findById } from '../lib/func.js'
+import { toggleEditMode, updateResult, deleteResult } from '../redux/actions.js'
 
-import "../styles/Results.scss";
+import "../styles/Results.scss"
 
 class Result extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       id: props.id,
@@ -28,11 +28,11 @@ class Result extends Component {
   }
 
   handleSaveClick(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    const { toggleEditMode, editMode, id } = this.props
+    const { toggleEditMode, editableId, id } = this.props
 
-    if(editMode) {
+    if(editableId) {
       const { usersList, teamsList, citiesList, updateResult } = this.props
       const { userId, teamId, cityId, time, id } = this.state
       const payload = {
@@ -44,26 +44,25 @@ class Result extends Component {
       }
       updateResult(payload)
     }
-
-    toggleEditMode(id);
+    toggleEditMode(id)
   }
 
   handleDeleteClick(event, id) {
-    event.preventDefault();
+    event.preventDefault()
 
     this.props.deleteResult(id)
   }
 
   handleChangeUser(value) {
-    this.setState({ userId: value });
+    this.setState({ userId: value })
   }
 
   handleChangeTeam(value) {
-    this.setState({ teamId: value });
+    this.setState({ teamId: value })
   }
 
   handleChangeCity(value) {
-    this.setState({ cityId: value });
+    this.setState({ cityId: value })
   }
 
   handleChangeTime(value) {
@@ -71,12 +70,12 @@ class Result extends Component {
   }
 
   render() {
-    const { editableId, userData, usersList, teamData, teamsList, cityData, citiesList, id } = this.props;
-    const { userId, teamId, cityId, time } = this.state;
+    const { editableId, userData, usersList, teamData, teamsList, cityData, citiesList, id } = this.props
+    const { userId, teamId, cityId, time } = this.state
 
-    const usersOptions = listToSelectOptions(usersList);
-    const teamsOptions = listToSelectOptions(teamsList);
-    const citiesOptions = listToSelectOptions(citiesList);
+    const usersOptions = listToSelectOptions(usersList)
+    const teamsOptions = listToSelectOptions(teamsList)
+    const citiesOptions = listToSelectOptions(citiesList)
 
     const userOption = usersOptions.find(item => item.value == userId)
     const teamOption = teamsOptions.find(item => item.value == teamId)
@@ -98,9 +97,9 @@ class Result extends Component {
         <div className="result-actions">
           <EditSwitcher handler={this.handleSaveClick} status={editMode} />
           <div><button onClick={(event) => { this.handleDeleteClick(event, id)}}>Delete</button></div>
-        </div>  
+        </div>
       </div>
-    );
+    )
   }
 }
 
@@ -110,7 +109,7 @@ Result.propTypes = {
   teamData: PropTypes.object.isRequired,
   cityData: PropTypes.object.isRequired,
   time: PropTypes.string
-};
+}
 
 const mapStateToProps = ({ editableId, resultsList, usersList, teamsList, citiesList }) => ({
   editableId,
@@ -118,8 +117,12 @@ const mapStateToProps = ({ editableId, resultsList, usersList, teamsList, cities
   usersList,
   teamsList,
   citiesList
-});
+})
 
-const mapDispatchToProps = { toggleEditMode, updateResult, deleteResult };
+const mapDispatchToProps = {
+  toggleEditMode,
+  updateResult,
+  deleteResult
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Result);
+export default connect(mapStateToProps, mapDispatchToProps)(Result)

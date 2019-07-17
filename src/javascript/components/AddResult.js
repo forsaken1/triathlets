@@ -1,9 +1,9 @@
-import React, { Component } from "react";
-import { connect } from 'react-redux';
-import EditTime from "./EditTime.js";
-import EditSelect from "./EditSelect.js";
-import { listToSelectOptions, findById } from '../lib/func.js';
-import { addResult, toggleEditMode } from '../redux/actions.js';
+import React, { Component } from "react"
+import { connect } from 'react-redux'
+import EditTime from "./EditTime.js"
+import EditSelect from "./EditSelect.js"
+import { listToSelectOptions, findById } from '../lib/func.js'
+import { addResult, toggleEditMode } from '../redux/actions.js'
 
 const defaultState = {
   userId: null,
@@ -15,7 +15,7 @@ const defaultState = {
 
 class AddResult extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = defaultState;
     this.handleClickAdd = this.handleClickAdd.bind(this)
@@ -26,10 +26,10 @@ class AddResult extends Component {
   }
 
   handleClickAdd(event) {
-    event.preventDefault();
+    event.preventDefault()
 
-    const { addResult, resultsList, usersList, teamsList, citiesList } = this.props;
-    const { userId, teamId, cityId, time } = this.state;
+    const { addResult, resultsList, usersList, teamsList, citiesList, raceId } = this.props
+    const { userId, teamId, cityId, time } = this.state
 
     if(userId == null || teamId == null || cityId == null) {
       this.setState({ hasError: true })
@@ -37,10 +37,10 @@ class AddResult extends Component {
     }
 
     const payload = {
-      id: Math.floor(Math.random() * 100000),
       user: findById(usersList, userId),
       team: findById(teamsList, teamId),
       city: findById(citiesList, cityId),
+      raceId: raceId,
       time: time
     }
 
@@ -49,15 +49,15 @@ class AddResult extends Component {
   }
 
   handleChangeUser(value) {
-    this.setState({ userId: value });
+    this.setState({ userId: value })
   }
 
   handleChangeTeam(value) {
-    this.setState({ teamId: value });
+    this.setState({ teamId: value })
   }
 
   handleChangeCity(value) {
-    this.setState({ cityId: value });
+    this.setState({ cityId: value })
   }
 
   handleChangeTime(value) {
@@ -65,12 +65,12 @@ class AddResult extends Component {
   }
 
   render() {
-    const { usersList, teamsList, citiesList } = this.props;
-    const { userId, teamId, cityId, time, hasError } = this.state;
+    const { usersList, teamsList, citiesList } = this.props
+    const { userId, teamId, cityId, time, hasError } = this.state
 
-    const usersOptions = listToSelectOptions(usersList);
-    const teamsOptions = listToSelectOptions(teamsList);
-    const citiesOptions = listToSelectOptions(citiesList);
+    const usersOptions = listToSelectOptions(usersList)
+    const teamsOptions = listToSelectOptions(teamsList)
+    const citiesOptions = listToSelectOptions(citiesList)
 
     const currentUserOption = userId ? usersOptions.find(item => item.value == userId) : {}
     const currentTeamOption = teamId ? teamsOptions.find(item => item.value == teamId) : {}
@@ -98,8 +98,8 @@ const mapStateToProps = ({ resultsList, usersList, teamsList, citiesList }) => (
   usersList,
   teamsList,
   citiesList
-});
+})
 
-const mapDispatchToProps = { addResult };
+const mapDispatchToProps = { addResult }
 
-export default connect(mapStateToProps, mapDispatchToProps)(AddResult);
+export default connect(mapStateToProps, mapDispatchToProps)(AddResult)
