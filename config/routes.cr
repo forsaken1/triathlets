@@ -20,6 +20,7 @@ Amber::Server.configure do |app|
   end
 
   pipeline :api do
+    plug Amber::Pipe::Logger.new
   end
 
   routes :web do
