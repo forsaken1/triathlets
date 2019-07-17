@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 import Race from "./components/Race"
 import Races from "./components/Races"
 import Users from "./components/Users"
+import Cities from "./components/Cities"
+import Teams from "./components/Teams"
 import Header from "./components/Header"
 import store from './redux/store'
 
@@ -19,6 +21,8 @@ if(reactAdminDashboardEntrypoint) {
         <Header />
         <Route path="/admin" exact component={Races} />
         <Route path="/admin/users" component={Users} />
+        <Route path="/admin/cities" component={Cities} />
+        <Route path="/admin/teams" component={Teams} />
         <Route path="/admin/races/:id" render={(props) => <Race {...props} />} />
       </Router>
     </Provider>,
