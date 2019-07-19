@@ -18,4 +18,13 @@ class User < Jennifer::Model::Base
   def self.by_team_id(team_id)
     all.find_by_sql "SELECT users.* FROM users JOIN results ON results.user_id = users.id WHERE results.team_id = $1 GROUP BY users.id", [team_id]
   end
+
+  def as_json
+    {
+      id:            id,
+      name:          name,
+      qualification: qualification,
+      year:          year,
+    }
+  end
 end

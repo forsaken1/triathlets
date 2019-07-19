@@ -19,9 +19,22 @@ class Result < Jennifer::Model::Base
   belongs_to :team, Team
   belongs_to :group, Group
 
-  has_many :result_race_disciplines, ResultRaceDiscipline, { order(position: :asc) }
+  has_many :result_race_disciplines, ResultRaceDiscipline, {order(position: :asc)}
+
+  scope :by_race_id { |race_id| where { _race_id == race_id } unless race_id.nil? }
 
   def time_format
     time.nil? ? "DNF" : time
+  end
+
+  def as_json
+    {
+      id:    id,
+      user:  user!.as_json,
+      city:  city!.as_json,
+      team:  team!.as_json,
+      group: group ? group!.as_json : nil,
+      time:  time,
+    }
   end
 end

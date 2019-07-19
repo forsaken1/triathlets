@@ -20,6 +20,12 @@ module RouteHelpers
     "/teams"
   end
 
+  # admin panel routes
+
+  def admin_race_path(race)
+    "/admin/races/#{race.id}"
+  end
+
   private def join_attributes(attributes)
     unless attributes.empty?
       "?" + attributes.map do |key, value|

@@ -1,0 +1,55 @@
+{
+  "name": "triathlets",
+  "version": "1.0.0",
+  "description": "Triatleths application",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack --mode development --watch",
+    "watch": "webpack --mode development --watch",
+    "build": "webpack --mode production",
+    "lint": "eslint src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/forsaken1/triathlets.git"
+  },
+  "author": "Alexey Krylov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/forsaken1/triathlets/issues"
+  },
+  "homepage": "https://github.com/forsaken1/triathlets#readme",
+  "devDependencies": {
+    "@babel/core": "^7.4.3",
+    "@babel/preset-env": "^7.4.3",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.5",
+    "css-loader": "^2.1.1",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-react": "^7.14.2",
+    "node-sass": "^4.12.0",
+    "sass-loader": "^7.1.0",
+    "style-loader": "^0.23.1",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
+  },
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "rc-time-picker": "^3.7.1",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9",
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.1.0",
+    "react-router-dom": "^5.0.1",
+    "react-select": "^3.0.4",
+    "redux": "^4.0.1",
+    "redux-saga": "^1.0.5"
+  }
+}

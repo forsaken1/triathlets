@@ -19,6 +19,10 @@ Amber::Server.configure do |app|
     plug Amber::Pipe::Static.new("./public")
   end
 
+  pipeline :api do
+    plug Amber::Pipe::Logger.new
+  end
+
   routes :web do
     get "/", HomeController, :index
     get "/about", HomeController, :about
@@ -27,6 +31,18 @@ Amber::Server.configure do |app|
     get "/users/:id", UsersController, :show
     get "/teams", TeamsController, :index
     get "/teams/:id", TeamsController, :show
+  end
+
+  routes :api, "/api" do
+    resources "/races", Api::RacesController, only: [:index, :show, :create, :update, :destroy]
+    resources "/results", Api::ResultsController, only: [:index, :show, :create, :update, :destroy]
+    resources "/users", Api::UsersController, only: [:index]
+    resources "/teams", Api::TeamsController, only: [:index]
+    resources "/cities", Api::CitiesController, only: [:index]
+  end
+
+  routes :web, "/admin" do
+    get "/*", Admin::DashboardController, :index
   end
 
   routes :static do
