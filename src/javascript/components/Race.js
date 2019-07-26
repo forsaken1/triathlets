@@ -1,10 +1,10 @@
 import React, { Component } from "react"
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import Result from "./Result.js"
-import AddResult from "./AddResult.js"
-import * as Route from '../lib/routes.js'
-import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions.js'
+import Result from "./Result"
+import AddResult from "./AddResult"
+import * as Route from '../lib/routes'
+import { fetchResults, fetchCities, fetchUsers, fetchTeams } from '../redux/actions'
 
 class Race extends Component {
   constructor(props) {
