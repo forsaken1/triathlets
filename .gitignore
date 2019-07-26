@@ -9,3 +9,5 @@ app
 triathlets
 .DS_Store
 package-lock.json
+node_modules
+bundle.js
