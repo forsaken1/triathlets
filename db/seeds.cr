@@ -1,7 +1,16 @@
 require "./seeds/init"
 
+delete_all_data
+
 add_race_17_09_2016
+
 add_race_29_07_2017
 add_race_19_08_2017
 add_race_16_09_2017
+
+add_race_21_07_2018
+add_race_01_09_2018
 add_race_15_09_2018
+
+add_race_14_07_2019_oli
+add_race_14_07_2019_sprint

@@ -42,6 +42,8 @@ TEAMS = {
   "IRON TEAM"            => Team.create(name: "IRON TEAM").id,
   "greentour"            => Team.create(name: "greentour").id,
   "VIA-PORT"             => Team.create(name: "VIA-PORT").id,
+  "RunDNSRun"            => Team.create(name: "RunDNSRun").id,
+  "Морпех"               => Team.create(name: "Морпех").id,
 }
 
 USERS = {
@@ -151,5 +153,12 @@ USERS = {
   "Москаленко Сергей"      => User.create(name: "Москаленко Сергей", year: 1954).id,
   "Тарабрин Ярослав"       => User.create(name: "Тарабрин Ярослав", year: 2002).id,
   "Кононов Владислав"      => User.create(name: "Кононов Владислав", year: 2002).id,
+
+  "Кононов" => User.create(name: "Кононов", year: 2002).id,
+  "Кононов" => User.create(name: "Кононов", year: 2002).id,
+  "Кононов" => User.create(name: "Кононов", year: 2002).id,
+  "Кононов" => User.create(name: "Кононов", year: 2002).id,
+  "Кононов" => User.create(name: "Кононов", year: 2002).id,
+
   # "" => User.create(name: "", year: 19).id,
 }
