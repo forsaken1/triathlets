@@ -24,7 +24,7 @@ def relative_to_absolute(*results)
   end[0...results.size - 1]
 end
 
-def delete_all_info
+def delete_all_data
   [
     "users",
     "result_race_disciplines",

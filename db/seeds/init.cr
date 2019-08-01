@@ -5,7 +5,5 @@ require "../../src/models/*"
 
 require "./lib"
 
-delete_all_info
-
 require "./constants"
 require "./races/*"
