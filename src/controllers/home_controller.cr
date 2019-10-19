@@ -4,6 +4,12 @@ class HomeController < ApplicationController
     render("index.slang")
   end
 
+  def rating
+    users = User.all
+    rating = Rating.new users
+    render("rating.slang")
+  end
+
   def about
     render("about.slang")
   end
