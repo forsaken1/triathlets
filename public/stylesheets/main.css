@@ -154,3 +154,23 @@ table td, table th {
     width: 100%;
   }
 }
+
+.users-comparison-container {
+  display: flex;
+}
+
+.user-comparison-container {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+}
+
+.user-comparison-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-comparison-result .row {
+  display: flex;
+  flex-direction: column;
+}
