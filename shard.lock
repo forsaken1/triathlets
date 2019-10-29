@@ -2,19 +2,19 @@ version: 1.0
 shards:
   amber:
     github: amberframework/amber
-    version: 0.27.0
+    version: 0.31.0
 
   amber_router:
     github: amberframework/amber-router
-    version: 0.2.1
+    version: 0.3.0
 
   callback:
-    github: mosop/callback
-    version: 0.6.3
+    github: drujensen/callback
+    version: 0.7.1
 
   cli:
-    github: mosop/cli
-    version: 0.7.0
+    github: drujensen/cli
+    version: 0.8.0
 
   compiled_license:
     github: elorest/compiled_license
@@ -22,7 +22,7 @@ shards:
 
   db:
     github: crystal-lang/crystal-db
-    version: 0.5.1
+    version: 0.7.0
 
   email:
     github: arcage/crystal-email
@@ -34,11 +34,11 @@ shards:
 
   garnet_spec:
     github: amberframework/garnet-spec
-    version: 0.2.1
+    version: 0.3.0
 
   i18n:
     github: TechMagister/i18n.cr
-    version: 0.2.0
+    version: 0.3.1
 
   ifrit:
     github: imdrasil/ifrit
@@ -50,7 +50,7 @@ shards:
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: 0.7.1
+    version: 0.8.3
 
   kilt:
     github: jeromegn/kilt
@@ -58,23 +58,23 @@ shards:
 
   liquid:
     github: TechMagister/liquid.cr
-    version: 0.3.0
+    version: 0.3.2
 
   micrate:
     github: amberframework/micrate
-    version: 0.3.3
+    version: 0.4.1
 
   mysql:
     github: crystal-lang/crystal-mysql
-    version: 0.5.1
+    version: 0.9.0
 
   optarg:
-    github: mosop/optarg
-    version: 0.5.8
+    github: drujensen/optarg
+    version: 0.7.0
 
   pg:
     github: will/crystal-pg
-    version: 0.15.0
+    version: 0.19.0
 
   pool:
     github: ysbaddaden/pool
@@ -86,7 +86,7 @@ shards:
 
   redis:
     github: stefanwille/crystal-redis
-    version: 2.0.0
+    version: 2.2.1
 
   sam:
     github: imdrasil/sam.cr
@@ -106,7 +106,7 @@ shards:
 
   sqlite3:
     github: crystal-lang/crystal-sqlite3
-    version: 0.10.0
+    version: 0.14.0
 
   string_inflection:
     github: mosop/string_inflection
@@ -114,5 +114,5 @@ shards:
 
   teeplate:
     github: mosop/teeplate
-    version: 0.7.0
+    version: 0.8.0
 

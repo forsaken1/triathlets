@@ -10,18 +10,19 @@ license: MIT
 
 dependencies:
   amber:
-    github: amberframework/amber 
-    version: "~> 0.31.0"
+    github: amberframework/amber
+    version: "0.31.0"
 
   quartz_mailer:
     github: amberframework/quartz-mailer
 
   jennifer:
     github: imdrasil/jennifer.cr
-    version: "~> 0.7"
+    version: "0.8.3"
 
   sam:
     github: imdrasil/sam.cr
+    version: "0.3.0"
 
   pg:
     github: will/crystal-pg
