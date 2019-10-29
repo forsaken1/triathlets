@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   def show
     user = User.find! params["id"]
     races = Race.by_user_id(user.id).to_a
+    races_presenter = RacesPresenter.new races, user
     render("show.slang")
   end
 
