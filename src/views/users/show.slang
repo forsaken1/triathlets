@@ -7,6 +7,7 @@ table.table.table-striped
     th #
     th = "Название"
     th = "Дата"
+    th = "Место (по полу и категории)"
     th = "Результат"
 
   - races_presenter.each_with_index do |race, i|
@@ -15,4 +16,5 @@ table.table.table-striped
       td
         a href=race_path(race) = race.title
       td = race.date
+      td = race.position
       td = race.time
