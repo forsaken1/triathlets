@@ -9,6 +9,10 @@ class UserPresenter
     @races = RacesPresenter.new _races, @user
   end
 
+  def self.wrap(collection : Array(User))
+    collection.map { |user| UserPresenter.new user }
+  end
+
   def qualification
     @user.qualification ? @user.qualification : "нет"
   end
