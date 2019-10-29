@@ -7,7 +7,7 @@ table.table.table-striped
     th #
     th = "Название"
     th = "Дата"
-    th = "Место (по полу и категории)"
+    th = "Место (пол и группа)"
     th = "Результат"
 
   - races_presenter.each_with_index do |race, i|
