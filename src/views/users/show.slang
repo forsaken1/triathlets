@@ -1,6 +1,12 @@
-h1 = user.name
+h1 = user_presenter.name
 
-h4 = "Гонки"
+.user-info
+  .line
+    = "Год рождения: #{user_presenter.year}"
+  .line  
+    = "Квалификация: #{user_presenter.qualification}"
+
+h3 = "Гонки"
 
 table.table.table-striped
   tr
