@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def index
-    users = User.search(name).to_a
+    _users = User.search(name).to_a
+    users = UserPresenter.wrap _users
     render("index.slang")
   end
 
