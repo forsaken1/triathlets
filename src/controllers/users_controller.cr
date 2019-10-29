@@ -6,12 +6,16 @@ class UsersController < ApplicationController
 
   def show
     user = User.find! params["id"]
-    races = Race.by_user_id(user.id).to_a
+    races = Race.by_user_id(user.id, order_query).to_a
     races_presenter = RacesPresenter.new races, user
     render("show.slang")
   end
 
   private def name
     params["name"]? ? params["name"] : ""
+  end
+
+  private def order_query
+    "ORDER BY TO_TIMESTAMP(races.date, 'DD.MM.YYYY')"
   end
 end
