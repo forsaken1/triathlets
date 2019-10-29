@@ -11,3 +11,4 @@ triathlets
 package-lock.json
 node_modules
 bundle.js
+.vscode

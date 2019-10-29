@@ -4,14 +4,14 @@ version: 1.1.0
 authors:
   - Amber <contact@ambercr.io>
 
-crystal: 0.27.2
+crystal: 0.31.1
 
 license: MIT
 
 dependencies:
   amber:
     github: amberframework/amber 
-    version: "~> 0.27"
+    version: "~> 0.31.0"
 
   quartz_mailer:
     github: amberframework/quartz-mailer

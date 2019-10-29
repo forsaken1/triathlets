@@ -7,10 +7,12 @@ table.table.table-striped
     th #
     th = "Название"
     th = "Дата"
+    th = "Результат"
 
-  - races.each_with_index do |race, i|
+  - races_presenter.each_with_index do |race, i|
     tr
       td = i + 1
       td
         a href=race_path(race) = race.title
       td = race.date
+      td = race.time
