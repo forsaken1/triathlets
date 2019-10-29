@@ -154,3 +154,7 @@ table td, table th {
     width: 100%;
   }
 }
+
+.user-info {
+  padding: 10px 0;
+}
