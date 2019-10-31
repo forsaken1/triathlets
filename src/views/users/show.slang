@@ -16,7 +16,7 @@ table.table.table-striped
     th = "Место (пол и группа)"
     th = "Результат"
 
-  - user_presenter.races.each_with_index do |race, i|
+  - races_presenter.each_with_index do |race, i|
     tr
       td = i + 1
       td
