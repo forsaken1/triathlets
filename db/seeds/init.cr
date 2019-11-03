@@ -3,9 +3,9 @@ require "jennifer/adapter/postgres"
 require "../../config/initializers/jennifer"
 require "../../src/models/*"
 
-require "./lib"
+require "./lib/*"
 
-delete_all_info
+Import.delete_all_info
 
 require "./constants"
 require "./races/*"

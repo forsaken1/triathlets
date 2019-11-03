@@ -174,3 +174,7 @@ table td, table th {
   display: flex;
   flex-direction: column;
 }
+
+.user-info {
+  padding: 10px 0;
+}
