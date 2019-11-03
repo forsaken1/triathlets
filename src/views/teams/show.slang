@@ -7,7 +7,7 @@ table.table.table-striped
     th = "Год"
     th = "Квалификация"
 
-  - users.each_with_index do |user, i|
+  - users_presenter.each_with_index do |user, i|
     tr
       td = i + 1
       td
