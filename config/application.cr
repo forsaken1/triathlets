@@ -46,6 +46,7 @@ Amber::Server.configure do |settings|
   # settings.logging.filter = %w(password confirm_password)
   # settings.logging.skip = %w()
   # settings.logging.context = %w(request headers cookies session params)
+  settings.logging.context = %w(request params)
   #
   #
   # Secret Key Base: is used for specifying a key which allows sessions
