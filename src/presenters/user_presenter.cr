@@ -5,6 +5,6 @@ class UserPresenter
   end
 
   def qualification
-    @user.qualification ? @user.qualification : "нет"
+    @user.qualification ? @user.qualification : "-"
   end
 end

@@ -13,7 +13,7 @@ class User < Jennifer::Model::Base
   has_many :results, Result
 
   def self.search(name)
-    all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1 ORDER BY users.name", ["%#{name}%"]
+    all.find_by_sql "SELECT users.* FROM users WHERE users.name ILIKE $1 ORDER BY users.name COLLATE \"C\"", ["%#{name}%"]
   end
 
   def self.by_team_id(team_id)
