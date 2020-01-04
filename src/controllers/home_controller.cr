@@ -21,6 +21,6 @@ class HomeController < ApplicationController
   end
 
   private def user_ids
-    @params["user_ids"].split(',').uniq.join(",")
+    @params["user_ids"].split(',').reject { |e| e == "" }.join(",")
   end
 end
