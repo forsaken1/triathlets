@@ -6,7 +6,7 @@ class HomeController < ApplicationController
 
   def compare
     # users = User.all.where { _id.in(user_ids) } # TODO: failed as Crystal compiler error
-    users = take_users
+    users = get_users
     render("compare.slang")
   end
 
@@ -14,7 +14,7 @@ class HomeController < ApplicationController
     render("about.slang")
   end
 
-  private def take_users
+  private def get_users
     @params["user_ids"]? ?
       User.all.find_by_sql("SELECT * FROM users WHERE id IN (#{user_ids})") :
       [] of User

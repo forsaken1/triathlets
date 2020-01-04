@@ -7,9 +7,9 @@ h1 = "Сравнение"
       .user-comparison-results
         - user.results.each do |result|
             .user-comparison-result
-              .row
+              .line
                 = result.race!.title
-              .row
+              .line
                 = result.time
 
 css:

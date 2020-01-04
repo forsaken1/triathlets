@@ -163,6 +163,7 @@ table td, table th {
   padding: 20px;
   border: 1px solid #ccc;
   margin-right: 10px;
+  border-radius: 4px;
 }
 
 .user-comparison-results {
@@ -170,7 +171,7 @@ table td, table th {
   flex-direction: column;
 }
 
-.user-comparison-result .row {
+.user-comparison-result .line {
   display: flex;
   flex-direction: column;
 }
