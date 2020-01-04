@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 10.5
--- Dumped by pg_dump version 10.5
+-- Dumped from database version 10.11
+-- Dumped by pg_dump version 12.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -12,26 +12,11 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
 SET default_tablespace = '';
-
-SET default_with_oids = false;
 
 --
 -- Name: cities; Type: TABLE; Schema: public; Owner: postgres
@@ -556,6 +541,78 @@ ALTER TABLE ONLY public.teams
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: results fk_cr_1656ccfca7; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results
+    ADD CONSTRAINT fk_cr_1656ccfca7 FOREIGN KEY (team_id) REFERENCES public.teams(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: result_race_disciplines fk_cr_3b930d1ca6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.result_race_disciplines
+    ADD CONSTRAINT fk_cr_3b930d1ca6 FOREIGN KEY (result_id) REFERENCES public.results(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: race_disciplines fk_cr_50e60155c6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.race_disciplines
+    ADD CONSTRAINT fk_cr_50e60155c6 FOREIGN KEY (race_id) REFERENCES public.races(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: race_disciplines fk_cr_5a57784277; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.race_disciplines
+    ADD CONSTRAINT fk_cr_5a57784277 FOREIGN KEY (discipline_id) REFERENCES public.disciplines(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: results fk_cr_6e7ff3acd5; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results
+    ADD CONSTRAINT fk_cr_6e7ff3acd5 FOREIGN KEY (race_id) REFERENCES public.races(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: results fk_cr_7f0d5a2cd6; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results
+    ADD CONSTRAINT fk_cr_7f0d5a2cd6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: results fk_cr_f3c7c3ee92; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results
+    ADD CONSTRAINT fk_cr_f3c7c3ee92 FOREIGN KEY (group_id) REFERENCES public.groups(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: results fk_cr_f4aa7f2d98; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.results
+    ADD CONSTRAINT fk_cr_f4aa7f2d98 FOREIGN KEY (city_id) REFERENCES public.cities(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
+
+
+--
+-- Name: result_race_disciplines fk_cr_f7c345a84e; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.result_race_disciplines
+    ADD CONSTRAINT fk_cr_f7c345a84e FOREIGN KEY (race_discipline_id) REFERENCES public.race_disciplines(id) ON UPDATE RESTRICT ON DELETE RESTRICT;
 
 
 --
