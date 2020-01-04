@@ -46,8 +46,7 @@ class Import
       "cities",
       "groups",
     ].each do |table_name|
-      Jennifer::Adapter.adapter.truncate(table_name)
-      Jennifer::Adapter.adapter.exec("ALTER SEQUENCE \"#{table_name}_id_seq\" RESTART WITH 1;")
+      Jennifer::Adapter.adapter.exec("TRUNCATE \"#{table_name}\" RESTART IDENTITY CASCADE;")
     end
   end  
 end
