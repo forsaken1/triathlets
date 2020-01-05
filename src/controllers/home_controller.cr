@@ -16,11 +16,15 @@ class HomeController < ApplicationController
 
   private def get_users
     @params["user_ids"]? ?
-      User.all.find_by_sql("SELECT * FROM users WHERE id IN (#{user_ids})") :
+      User.all.find_by_sql("SELECT * FROM users WHERE id IN (#{template})", user_ids) :
       [] of User
   end
 
   private def user_ids
-    @params["user_ids"].split(',').reject { |e| e == "" }.join(",")
+    @params["user_ids"].split(',').reject { |e| e == "" }.uniq.first(4)
+  end
+
+  private def template
+    user_ids.map_with_index { |_, i| "$#{i + 1}" }.join(',')
   end
 end

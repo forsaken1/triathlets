@@ -159,19 +159,20 @@ table td, table th {
   display: flex;
 }
 
-.user-comparison-container {
+.users-comparison-item {
   padding: 20px;
   border: 1px solid #ccc;
   margin-right: 10px;
   border-radius: 4px;
+  width: 24%;
 }
 
-.user-comparison-results {
+.users-comparison-results {
   display: flex;
   flex-direction: column;
 }
 
-.user-comparison-result .line {
+.users-comparison-result .line {
   display: flex;
   flex-direction: column;
 }

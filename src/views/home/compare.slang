@@ -2,11 +2,11 @@ h1 = "Сравнение"
 
 .users-comparison-container
   - users.each do |user|
-    .user-comparison-container
+    .users-comparison-item
       h2 = user.name
-      .user-comparison-results
+      .users-comparison-results
         - user.results.each do |result|
-            .user-comparison-result
+            .users-comparison-result
               .line
                 = result.race!.title
               .line
