@@ -155,6 +155,28 @@ table td, table th {
   }
 }
 
+.users-comparison-container {
+  display: flex;
+}
+
+.users-comparison-item {
+  padding: 20px;
+  border: 1px solid #ccc;
+  margin-right: 10px;
+  border-radius: 4px;
+  width: 24%;
+}
+
+.users-comparison-results {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-comparison-result .line {
+  display: flex;
+  flex-direction: column;
+}
+
 .user-info {
   padding: 10px 0;
 }
