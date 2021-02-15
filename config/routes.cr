@@ -21,6 +21,7 @@ Amber::Server.configure do |app|
 
   routes :web do
     get "/", HomeController, :index
+    get "/rating", HomeController, :rating
     get "/about", HomeController, :about
     get "/races/:id", RacesController, :show
     get "/users", UsersController, :index
